@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>문화 혼종성의 두 얼굴</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;800&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1C2533; --muted:#5A6577; --line:#D7DDE5; --bg:#EEF1F4; --paper:#FFFFFF; --soft:#F5F7F9;
+  --navy:#22324A; --gold:#C9962B;
+  --pos:#1F7A5A; --pos-bg:#E6F3EE;
+  --neg:#B23A48; --neg-bg:#FBEBED;
+  --both:#6A4FB3; --both-bg:#EFEBF9;
+  --none:#5A6577; --none-bg:#F2F4F7;
+  --serif:'Noto Serif KR','Nanum Myeongjo','AppleMyungjo',serif;
+  --sans:'IBM Plex Sans KR',system-ui,-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:120px}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);font-size:16px;line-height:1.65;padding-bottom:env(safe-area-inset-bottom,0px)}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+[tabindex="-1"]:focus{outline:none}
+h1,h2,h3{font-family:var(--serif);line-height:1.3;margin:0}
+p{margin:0 0 10px}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:var(--navy);color:#fff;padding:calc(10px + env(safe-area-inset-top,0px)) 20px 10px}
+.top-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-weight:800;font-size:17px;white-space:nowrap}
+.brand small{font-family:var(--sans);font-weight:400;color:#AFC0D4;font-size:12.5px;margin-left:8px}
+ol.stepper{list-style:none;margin:0 0 0 auto;padding:0;display:flex;gap:4px;flex-wrap:wrap}
+ol.stepper button{background:transparent;border:0;color:#C7D3E0;padding:5px 10px 5px 6px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:13.5px}
+ol.stepper .n{width:22px;height:22px;border-radius:50%;border:1.5px solid #6F82A0;display:grid;place-items:center;font-size:12px;font-weight:700}
+ol.stepper button.done .n{background:#6F82A0;color:#fff;border-color:#6F82A0}
+ol.stepper button[aria-current="step"]{background:#fff;color:var(--ink)}
+ol.stepper button[aria-current="step"] .n{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.bar{height:3px;background:#3A4C68;margin-top:8px;border-radius:2px;max-width:1080px;margin-left:auto;margin-right:auto}
+.bar i{display:block;height:100%;background:var(--gold);border-radius:2px;transition:width .3s}
+
+main{max-width:1080px;margin:0 auto;padding:26px 20px 40px}
+.screen{display:none}
+.screen.on{display:block}
+.kicker{font-size:13px;color:var(--muted);font-weight:500;margin-bottom:4px}
+.screen h2{font-size:clamp(22px,3vw,28px);margin-bottom:6px}
+.lead{color:var(--muted);max-width:68ch}
+
+.btn{display:inline-flex;align-items:center;gap:6px;border:0;border-radius:10px;padding:10px 18px;font-weight:700;cursor:pointer;background:var(--navy);color:#fff}
+.btn:hover{background:#2E4262}
+.btn.gold{background:var(--gold);color:var(--ink)}
+.btn.gold:hover{background:#D7A63C}
+.btn.line{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+.btn.line:hover{border-color:var(--navy)}
+.btn.sm{padding:6px 12px;font-size:14px;font-weight:500}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.navrow{display:flex;justify-content:space-between;gap:10px;margin-top:28px;padding-top:18px;border-top:1px solid var(--line);flex-wrap:wrap}
+.notice{font-size:14px;border-radius:10px;padding:10px 14px;background:#FFF7E3;border:1px solid #EBD7A3}
+
+/* step 1 */
+.hero{background:var(--paper);border-radius:18px;overflow:hidden;display:grid;grid-template-columns:1.25fr 1fr;border:1px solid var(--line)}
+.hero-l{padding:34px 34px 30px}
+.hero h1{font-size:clamp(30px,5vw,48px);font-weight:800;letter-spacing:-.01em;margin:6px 0 16px}
+.stamp{display:inline-block;border:2px solid var(--neg);color:var(--neg);font-weight:700;font-size:13px;padding:2px 10px;border-radius:6px;transform:rotate(-2deg)}
+.question{font-family:var(--serif);font-size:clamp(17px,2.2vw,21px);font-weight:600;border-left:4px solid var(--gold);padding:4px 0 4px 16px;margin:0 0 20px;max-width:34em}
+.hero-r{background:var(--navy);color:#fff;padding:30px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.hero-r svg{max-width:100%}
+.mission{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+.box{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.box h3{font-size:17px;margin-bottom:8px}
+.box ol,.box ul{margin:0;padding-left:20px}
+.box li{margin-bottom:4px}
+
+/* step 2 */
+.tabs{display:flex;gap:6px;margin:18px 0 0;flex-wrap:wrap}
+.tab{background:#DDE3EA;border:0;border-radius:12px 12px 0 0;padding:10px 16px;cursor:pointer;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:8px}
+.tab[aria-selected="true"]{background:var(--paper);color:var(--ink)}
+.tab .seen{font-size:11.5px;font-weight:700;color:var(--pos);background:var(--pos-bg);border-radius:999px;padding:1px 8px}
+.casefile{background:var(--paper);border:1px solid var(--line);border-radius:0 16px 16px 16px;padding:24px}
+.casehead{display:grid;grid-template-columns:220px 1fr;gap:22px;align-items:center;margin-bottom:18px}
+.illus{background:var(--soft);border-radius:14px;padding:10px;border:1px solid var(--line)}
+.illus figcaption{font-size:12px;color:var(--muted);text-align:center;margin-top:4px}
+.casehead h3{font-size:24px;margin-bottom:6px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sec{border-radius:12px;padding:14px 16px;border:1px solid var(--line);background:var(--soft)}
+.sec h4{margin:0 0 6px;font-size:15px;display:flex;align-items:center;gap:8px}
+.sec ul{margin:0;padding-left:20px}
+.sec li{margin-bottom:4px}
+.sec.history{grid-column:1/-1;background:#fff}
+.sec.pos{background:var(--pos-bg);border-color:#BFDCD0}
+.sec.neg{background:var(--neg-bg);border-color:#EAC3C8}
+.sym{width:24px;height:24px;border-radius:7px;display:inline-grid;place-items:center;font-weight:800;color:#fff;font-size:15px;flex:none;font-family:var(--sans)}
+.sym.pos{background:var(--pos)} .sym.neg{background:var(--neg)} .sym.both{background:var(--both)} .sym.none{background:var(--none)}
+.ask{margin-top:14px;border:2px dashed var(--gold);border-radius:12px;padding:14px 16px;background:#FFFCF3}
+.ask .q{font-weight:700;margin-bottom:8px}
+textarea,input[type=text]{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;background:#fff;resize:vertical}
+textarea:focus,input[type=text]:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(34,50,74,.15)}
+.qwrap{margin-top:16px;border:1px solid var(--line);border-radius:14px;background:#FFFCF3;padding:14px 16px}
+.qwrap>h4{margin:0 0 4px;font-size:16px}
+.qwrap>p{font-size:13.5px;color:var(--muted)}
+.qi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px}
+.qi .qh{display:flex;gap:8px;align-items:flex-start;font-weight:700;margin-bottom:8px}
+.qi .qn{flex:none;width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;font-size:13px;display:grid;place-items:center;margin-top:1px}
+.lv{display:inline-block;font-size:11.5px;font-weight:700;border-radius:999px;padding:1px 8px;margin:2px 0 4px;white-space:nowrap}
+.qi .qt{display:block}
+.lv.read{background:#E6F0FB;color:#2C5AA0}.lv.think{background:#FFF1CC;color:#8A5A00}.lv.deep{background:var(--both-bg);color:var(--both)}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.opt{display:flex;gap:8px;align-items:center;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-size:14.5px}
+.opt:hover{border-color:var(--navy)}
+.opt .mk{flex:none;width:18px;height:18px;border:2px solid #9AA5B4;display:grid;place-items:center;font-size:11px;color:#fff}
+.opt.one .mk{border-radius:50%}.opt.multi .mk{border-radius:4px}
+.opt[aria-pressed="true"],.opt[aria-checked="true"]{border-color:var(--navy);background:#F1F4F8}
+.opt[aria-pressed="true"] .mk,.opt[aria-checked="true"] .mk{background:var(--navy);border-color:var(--navy)}
+.fb{margin-top:8px;font-size:14px;border-radius:8px;padding:7px 10px;display:flex;gap:6px;align-items:flex-start}
+.fb.ok{background:var(--pos-bg);color:#165C44}.fb.no{background:#FFF7E3;color:#7A5200}
+.fb b{flex:none}
+.sources{margin-top:16px;font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+.sources b{color:var(--ink)}
+.sources ul{margin:6px 0 0;padding-left:18px}
+.verify{display:inline-block;font-size:11.5px;font-weight:700;color:#8A5A00;background:#FFF1CC;border-radius:6px;padding:0 6px;margin-left:4px;white-space:nowrap}
+.flag{font-size:12px;color:#8A5A00;background:#FFF1CC;border-radius:5px;padding:0 5px;margin-left:3px;white-space:nowrap}
+
+/* step 3 */
+.sortwrap{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.zone{border-radius:16px;padding:12px;min-height:150px;border:2px solid transparent;transition:border-color .15s, box-shadow .15s}
+.zone h3{font-family:var(--sans);font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px;margin:2px 4px 10px}
+.zone h3 .cnt{margin-left:auto;font-size:12.5px;font-weight:500;color:var(--muted)}
+.zone.pos{background:var(--pos-bg);border-color:#BFDCD0}
+.zone.neg{background:var(--neg-bg);border-color:#EAC3C8}
+.zone.both{background:var(--both-bg);border-color:#D3C8EE}
+.zone.pool{background:var(--paper);border:2px dashed var(--line);margin-top:16px}
+.zone.pool .cards{max-height:none}
+.zone.over{border-color:var(--navy);box-shadow:0 0 0 3px rgba(34,50,74,.15)}
+.zone .empty{font-size:13.5px;color:var(--muted);text-align:center;padding:16px 8px}
+.pool .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.zone:not(.pool) .cards{display:grid;gap:10px}
+.icard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 12px 10px;box-shadow:0 1px 2px rgba(28,37,51,.06);position:relative}
+.icard[draggable="true"]{cursor:grab}
+.icard.dragging{opacity:.4}
+.icard .meta{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px;align-items:center}
+.tag{font-size:11.5px;border-radius:999px;padding:1px 8px;background:var(--soft);border:1px solid var(--line);color:var(--muted)}
+.tag.lens{background:#EEF2F8;color:var(--navy);border-color:#D3DCEA;font-weight:500}
+.icard .txt{font-weight:500;font-size:15px;line-height:1.55}
+.icard .num{font-family:var(--serif);font-weight:800;color:var(--gold);margin-right:4px}
+.moves{display:flex;gap:4px;flex-wrap:wrap;margin-top:9px}
+.mv{border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:3px 8px;font-size:12.5px;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.mv .s{font-weight:800}
+.mv.pos .s{color:var(--pos)} .mv.neg .s{color:var(--neg)} .mv.both .s{color:var(--both)} .mv.none .s{color:var(--none)}
+.mv[aria-pressed="true"]{color:#fff;border-color:transparent}
+.mv.pos[aria-pressed="true"]{background:var(--pos)} .mv.neg[aria-pressed="true"]{background:var(--neg)} .mv.both[aria-pressed="true"]{background:var(--both)}
+.mv[aria-pressed="true"] .s{color:#fff}
+.reason{margin-top:8px}
+.reason input{font-size:13.5px;padding:6px 10px}
+.persp{margin-top:8px;font-size:13px}
+.persp summary{cursor:pointer;color:var(--navy);font-weight:700}
+.persp ul{margin:6px 0 0;padding-left:18px}
+.persp li{margin-bottom:3px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}
+table.summary{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:12px;overflow:hidden}
+table.summary th,table.summary td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+table.summary th{background:var(--soft);font-size:13px;color:var(--muted)}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:700;border-radius:999px;padding:1px 9px 1px 3px;white-space:nowrap}
+.pill .sym{width:18px;height:18px;font-size:12px;border-radius:50%}
+.pill.pos{background:var(--pos-bg);color:var(--pos)} .pill.neg{background:var(--neg-bg);color:var(--neg)} .pill.both{background:var(--both-bg);color:var(--both)} .pill.none{background:var(--none-bg);color:var(--none)}
+.tablewrap{overflow-x:auto;margin-top:10px;border:1px solid var(--line);border-radius:12px}
+
+/* step 4 */
+.frame{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-top:16px}
+.frame .ln{font-family:var(--serif);font-size:17px;font-weight:600;margin:12px 0 4px;line-height:1.5}
+.frame .ln:first-child{margin-top:0}
+.frame .ln em{font-style:normal;color:var(--muted);font-weight:600}
+.two{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;align-items:start}
+.evlist{display:grid;gap:8px}
+.ev{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;cursor:pointer}
+.ev input{width:18px;height:18px;margin-top:4px;accent-color:var(--navy);flex:none}
+.ev:has(input:checked){border-color:var(--navy);background:#F3F6FA}
+.ev .t{font-size:14px}
+.ev .r{font-size:12.5px;color:var(--muted);margin-top:2px}
+.check{list-style:none;padding:0;margin:8px 0 0}
+.check li{display:flex;gap:8px;align-items:flex-start;font-size:14px;margin-bottom:6px}
+.check .ic{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800}
+.check .ok{background:var(--pos);color:#fff}
+.check .todo{background:#fff;border:2px solid #C3CBD6;color:var(--muted)}
+.check .st{font-weight:700;font-size:12px;margin-right:4px}
+
+/* result */
+.report{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:26px 28px}
+.report h3{font-size:18px;margin:22px 0 8px;padding-bottom:4px;border-bottom:2px solid var(--ink)}
+.report .verdict{font-family:var(--serif);font-size:17px;line-height:1.75;background:var(--soft);border-radius:12px;padding:14px 16px;white-space:pre-wrap}
+.report .memo{font-size:14.5px;margin-bottom:6px}
+.report .memo b{display:inline-block;min-width:9em}
+.namefield{display:flex;gap:10px;align-items:center;margin:14px 0;flex-wrap:wrap}
+.namefield input{max-width:320px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:10px;font-size:14px;z-index:50;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.show{opacity:1}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr}
+  .hero-r{display:none}
+  .mission,.grid2,.two{grid-template-columns:1fr}
+  .sortwrap{grid-template-columns:1fr}
+  .casehead{grid-template-columns:1fr}
+  .illus{max-width:280px}
+  ol.stepper{margin-left:0;width:100%;overflow-x:auto;flex-wrap:nowrap}
+  ol.stepper .lbl{display:none}
+  ol.stepper button[aria-current="step"] .lbl{display:inline}
+  .brand small{display:none}
+}
+@media (max-width:520px){
+  .opts{grid-template-columns:1fr}
+  main{padding:18px 14px 30px}
+  .hero-l,.casefile,.report{padding:18px}
+  .pool .cards{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{
+  .top,.navrow,.no-print,.toast{display:none!important}
+  body{background:#fff;font-size:12.5pt}
+  main{padding:0;max-width:none}
+  .screen{display:none!important}
+  #s5{display:block!important}
+  .report{border:0;padding:0}
+  .report h3{break-after:avoid}
+  .tablewrap{border:0;overflow:visible}
+  .pill,.sym{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <div class="brand">문화 혼종성의 두 얼굴<small>문화 탐정단 미션</small></div>
+    <nav aria-label="진행 단계"><ol class="stepper" id="stepper"></ol></nav>
+  </div>
+  <div class="bar" aria-hidden="true"><i id="barfill"></i></div>
+</header>
+
+<main>
+<!-- STEP 1 -->
+<section class="screen" id="s1" aria-labelledby="t1">
+  <div class="hero">
+    <div class="hero-l">
+      <span class="stamp">사건 파일 No. 아메리카-03</span>
+      <h1 id="t1">문화 혼종성의 두 얼굴</h1>
+      <p class="question">서로 다른 문화의 만남은 새로운 문화를 만들어 내지만, 그 과정과 결과가 모두에게 긍정적이기만 할까?</p>
+      <p class="lead">여러분은 오늘 ‘문화 탐정단’이 되어 아메리카의 세 가지 사건 파일을 조사합니다. 증거를 모으고, 영향을 분류하고, 마지막에 자신의 판단을 보고서로 제출하세요.</p>
+      <button class="btn gold" data-next>탐정 활동 시작</button>
+      <p style="margin-top:12px;font-size:13.5px;color:var(--muted)">권장 시간 15~20분 · 작성 내용은 이 브라우저에만 저장됩니다.</p>
+    </div>
+    <div class="hero-r" aria-hidden="true">
+      <svg viewBox="0 0 300 230" width="300">
+        <circle cx="122" cy="105" r="70" fill="none" stroke="#C9962B" stroke-width="10"/>
+        <line x1="172" y1="155" x2="232" y2="215" stroke="#C9962B" stroke-width="16" stroke-linecap="round"/>
+        <g opacity=".95">
+          <circle cx="98" cy="96" r="30" fill="#1F7A5A" opacity=".85"/>
+          <circle cx="146" cy="96" r="30" fill="#B23A48" opacity=".85"/>
+          <path d="M122 76 a30 30 0 0 1 0 40 a30 30 0 0 1 0-40z" fill="#6A4FB3"/>
+        </g>
+        <text x="98" y="102" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" font-family="sans-serif">+</text>
+        <text x="146" y="102" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" font-family="sans-serif">!</text>
+        
+      </svg>
+    </div>
+  </div>
+  <div class="mission">
+    <div class="box">
+      <h3>이번 미션의 목표</h3>
+      <ol>
+        <li>아메리카 문화 혼종성의 사례를 설명할 수 있다.</li>
+        <li>문화 혼종성의 긍정적 영향과 생길 수 있는 문제를 구분할 수 있다.</li>
+        <li>사례와 근거를 들어 내 판단을 설명할 수 있다.</li>
+      </ol>
+    </div>
+    <div class="box">
+      <h3>활동 방법</h3>
+      <ol>
+        <li><b>사례 탐색</b> 세 개의 사건 파일을 읽고 질문에 답해요.</li>
+        <li><b>영향 분류</b> 영향 카드를 긍정·문제·양면으로 나눠요.</li>
+        <li><b>최종 판단</b> 근거 카드를 골라 내 생각을 써요.</li>
+        <li><b>탐구 결과</b> 보고서를 복사하거나 인쇄해 제출해요.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="box" style="margin-top:14px">
+    <h3>탐정 수칙</h3>
+    <p style="margin:0">문화가 섞이는 것 자체는 좋거나 나쁜 일이 아니에요. 우리가 살펴볼 것은 <b>차이를 대하는 태도</b>, <b>문화가 상품이 되는 방식</b>, <b>문화를 만든 사람들의 기여가 인정되는지</b>예요. 정답은 하나가 아닐 수 있어요. 근거와 이유가 중요해요.</p>
+  </div>
+</section>
+
+<!-- STEP 2 -->
+<section class="screen" id="s2" aria-labelledby="t2">
+  <div class="kicker">STEP 2 · 증거 수집</div>
+  <h2 id="t2">세 개의 사건 파일을 조사하세요</h2>
+  <p class="lead">탭을 눌러 사례를 읽고 질문에 답하세요. 앞의 질문은 사례 내용을 읽으면 바로 찾을 수 있어요. 뒤로 갈수록 내 생각을 써 보는 질문이에요.</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="casefile" id="casefile" role="tabpanel"></div>
+</section>
+
+<!-- STEP 3 -->
+<section class="screen" id="s3" aria-labelledby="t3">
+  <div class="kicker">STEP 3 · 증거 분류</div>
+  <h2 id="t3">영향 카드를 분류하세요</h2>
+  <p class="lead">카드 아래 버튼을 누르거나 카드를 끌어서 상자에 넣으세요. 언제든 다시 옮길 수 있어요. 한 가지 정답은 없어요. 왜 그렇게 나눴는지 이유를 적어 두면 다음 단계에서 근거로 쓸 수 있어요.</p>
+  <div class="notice" style="margin-top:12px">모든 카드는 실제 특정 사건이 아니라 <b>일반적인 상황을 가정한 교육용 판단 카드</b>예요.</div>
+  <div class="zone pool" id="zone-none" data-zone="none">
+    <h3><span class="sym none">?</span>아직 분류하지 않은 카드<span class="cnt" id="cnt-none"></span></h3>
+    <div class="cards" id="cards-none"></div>
+  </div>
+  <div class="sortwrap" id="zones"></div>
+  <div class="tools">
+    <button class="btn line sm" id="resetSort">분류 초기화</button>
+    <button class="btn line sm" id="toggleSummary" aria-expanded="false">내 분류 한눈에 보기</button>
+    <span id="sortStatus" style="font-size:14px;color:var(--muted)" aria-live="polite"></span>
+  </div>
+  <div id="summaryBox" hidden></div>
+</section>
+
+<!-- STEP 4 -->
+<section class="screen" id="s4" aria-labelledby="t4">
+  <div class="kicker">STEP 4 · 최종 판단</div>
+  <h2 id="t4">나의 판단을 써 보세요</h2>
+  <p class="lead">빈칸을 채우면 아래에 문장이 완성돼요. 완성된 문장은 자유롭게 고칠 수 있어요. 오른쪽에서 내 판단의 근거가 되는 카드를 골라 주세요.</p>
+  <div class="two">
+    <div>
+      <div class="frame">
+        <p class="ln">문화 혼종성은 <em>(가치)</em></p>
+        <input type="text" id="b1" placeholder="예: 재즈처럼 서로 다른 전통이 만나 새로운 예술을 낳는 계기">
+        <p class="ln">라는 점에서 가치가 있다. 하지만 <em>(문제)</em></p>
+        <input type="text" id="b2" placeholder="예: 문화를 만든 사람들의 기여가 잊히는 일">
+        <p class="ln">라는 문제도 발생할 수 있다. 따라서 문화적 다양성을 존중하기 위해서는 <em>(실천)</em></p>
+        <input type="text" id="b3" placeholder="예: 음식이나 음악을 즐길 때 그 역사와 만든 사람들을 함께 소개">
+        <p class="ln">해야 한다.</p>
+      </div>
+      <div class="frame">
+        <label for="full" style="font-weight:700;display:block;margin-bottom:6px">완성된 나의 판단 <span style="font-weight:400;color:var(--muted);font-size:14px">(자유롭게 고칠 수 있어요)</span></label>
+        <textarea id="full" rows="6"></textarea>
+        <div class="tools" style="margin-top:8px">
+          <button class="btn line sm" id="rebuild">빈칸 내용으로 다시 만들기</button>
+          <span id="editNote" style="font-size:13px;color:var(--muted)"></span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="frame">
+        <h3 style="font-family:var(--sans);font-size:16px;margin-bottom:4px">근거 카드 고르기</h3>
+        <p style="font-size:13.5px;color:var(--muted)">내가 분류한 결과와 이유가 함께 보여요. 가치와 문제를 뒷받침할 카드를 골라 보세요.</p>
+        <div class="evlist" id="evlist"></div>
+      </div>
+      <div class="frame">
+        <h3 style="font-family:var(--sans);font-size:16px;margin-bottom:4px">논리 연결 점검</h3>
+        <p style="font-size:13.5px;color:var(--muted);margin:0">점수가 아니라 내 글을 다듬기 위한 점검표예요.</p>
+        <ul class="check" id="checklist" aria-live="polite"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 5 -->
+<section class="screen" id="s5" aria-labelledby="t5">
+  <div class="kicker no-print">STEP 5 · 보고서 제출</div>
+  <h2 id="t5" class="no-print">나의 탐구 결과</h2>
+  <div class="namefield no-print">
+    <label for="sname" style="font-weight:700">이름</label>
+    <input type="text" id="sname" placeholder="예: 2학년 3반 김지리">
+    <button class="btn" id="copyBtn">결과 복사</button>
+    <button class="btn line" id="printBtn">인쇄 / PDF 저장</button>
+  </div>
+  <article class="report" id="report"></article>
+  <div class="tools no-print" style="margin-top:16px">
+    <button class="btn line sm" id="resetAll">모든 활동 기록 지우고 처음부터</button>
+  </div>
+</section>
+
+<div class="navrow" id="navrow" style="max-width:1080px;margin:0 auto 40px;padding-left:20px;padding-right:20px">
+  <button class="btn line" id="prevBtn">이전</button>
+  <button class="btn" id="nextBtn">다음</button>
+</div>
+</main>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ================= 데이터 ================= */
+const STEPS = ["미션 소개","사례 탐색","영향 분류","최종 판단","탐구 결과"];
+const CATS = {
+  pos:{ name:"긍정적 영향", sym:"+" },
+  neg:{ name:"부정적 영향 또는 문제점", short:"문제점", sym:"!" },
+  both:{ name:"양면적 영향", sym:"±" },
+  none:{ name:"미분류", sym:"?" }
+};
+CATS.pos.short = "긍정"; CATS.both.short = "양면"; CATS.none.short = "미분류";
+
+const V = '<span class="flag">수업 전 확인</span>';
+const CASES = [
+ { id:"A", tab:"A. 뉴올리언스 재즈", title:"뉴올리언스 재즈", sub:"미국 루이지애나주 · 19세기 말~20세기 초",
+   art:"jazz", artCap:"직접 그린 도식: 여러 음악 전통이 한 소리로 모이는 모습",
+   history:[
+     "뉴올리언스는 카리브해와 대서양을 잇는 항구 도시로, 아프리카계 주민, 프랑스·스페인 식민 시대의 후손, 크리올 등 다양한 사람이 함께 살았어요.",
+     "노예제 시기에 아프리카계 사람들이 콩고 광장(Congo Square)에 모여 음악과 춤을 이어 갔다고 전해져요."+V,
+     "19세기 말~20세기 초, 아프리카계 미국인의 리듬과 노래 방식, 블루스와 래그타임, 교회 음악, 유럽식 브라스 밴드의 금관 악기 등이 어우러지며 재즈가 발전했어요."
+   ],
+   pos:["서로 다른 음악 전통이 만나 새로운 예술 장르가 탄생했어요.","재즈는 이후 세계 여러 지역의 음악에 영향을 주었어요.","즉흥 연주처럼 새로운 표현 방식이 생겨났어요."],
+   neg:["재즈가 형성되던 시기 미국 남부에는 인종 분리와 차별이 있었어요.","1917년 처음 발매된 재즈 음반은 백인 연주자들로 구성된 밴드(Original Dixieland Jass Band)가 녹음했다고 알려져 있어요."+V+" 음악을 만든 사람들이 기회와 보상을 공정하게 받았는지 생각해 볼 수 있어요."],
+   qs:[
+     { lv:"read", type:"one", q:"재즈가 발전한 미국의 항구 도시는 어디인가요?", opts:["뉴욕","뉴올리언스","시카고","로스앤젤레스"], ans:[1],
+       ok:"맞아요. ‘역사적 배경’ 첫 문장에 나와 있어요.", hint:"‘역사적 배경’의 첫 문장을 다시 읽어 보세요." },
+     { lv:"read", type:"multi", q:"사례에 나온 재즈의 ‘재료’를 모두 고르세요.", opts:["블루스와 래그타임","유럽식 브라스 밴드의 금관 악기","아프리카계 미국인의 리듬과 노래 방식","일본의 전통 악기"], ans:[0,1,2],
+       ok:"맞아요. 여러 전통이 함께 어우러졌어요.", hint:"‘역사적 배경’ 세 번째 문장에 나온 것만 골라 보세요. 사례에 없는 것이 하나 있어요." },
+     { lv:"think", type:"text", q:"재즈를 ‘문화 혼종성’의 사례라고 할 수 있는 이유를 한 문장으로 써 보세요.", ph:"재즈는 ___와(과) ___이(가) 만나 만들어졌기 때문이다." },
+     { lv:"deep", type:"text", q:"재즈를 즐길 때, 이 음악을 만들어 온 음악가와 공동체의 기여를 함께 기억하려면 무엇이 필요할까요?", ph:"‘고민해 볼 점’을 참고해 내 생각을 적어 보세요." }
+   ],
+   src:[
+     { t:"미국 국립공원관리청(NPS), New Orleans Jazz National Historical Park", u:"https://www.nps.gov/jazz/" },
+     { t:"Ted Gioia, The History of Jazz, Oxford University Press (도서)", u:"" }
+   ]},
+ { id:"B", tab:"B. 멕시코 음식문화", title:"멕시코 음식문화", sub:"멕시코 · 원주민 사회부터 오늘날까지",
+   art:"mexico", artCap:"직접 그린 도식: 옥수수·고추(아메리카) + 밀·가축(유럽)",
+   history:[
+     "아메리카 원주민은 오래전부터 옥수수, 콩, 호박, 고추 등을 길렀어요. 옥수수를 석회수에 삶아 반죽을 만드는 방법(닉스타말화)으로 토르티야를 만들었어요.",
+     "16세기 스페인의 정복과 식민 지배 이후 돼지·소·닭 같은 가축, 밀, 유제품, 양파 등이 들어와 원주민의 재료·조리법과 결합했어요.",
+     "고추와 카카오 같은 아메리카 재료에 다른 대륙에서 온 향신료가 함께 쓰이는 몰레(mole)처럼, 지역마다 다양한 요리가 발전했어요.",
+     "‘멕시코 전통 요리’는 2010년 유네스코 인류무형문화유산에 등재되었어요."+V
+   ],
+   pos:["서로 다른 재료와 조리법이 만나 새롭고 다양한 음식문화가 생겼어요.","음식이 지역 공동체의 정체성과 축제를 이어 주는 역할을 해요."],
+   neg:["이 만남은 식민 지배라는 대등하지 않은 관계 속에서 일어났어요. 섞임의 과정이 늘 평화로웠던 것은 아니에요.","다른 지역으로 퍼질 때 ‘멕시코 음식은 이렇다’는 단순한 이미지나 고정관념으로 소비될 수 있어요. 실제로는 지역마다 매우 다양해요."],
+   qs:[
+     { lv:"read", type:"multi", q:"아메리카 원주민이 오래전부터 길러 온 작물로 사례에 나온 것을 모두 고르세요.", opts:["옥수수","콩","밀","고추"], ans:[0,1,3],
+       ok:"맞아요. 밀은 스페인 식민 지배 이후 들어온 재료예요.", hint:"‘역사적 배경’ 첫 문장과 두 번째 문장을 비교해 보세요. 하나는 스페인이 들여온 재료예요." },
+     { lv:"read", type:"one", q:"옥수수를 석회수에 삶아 반죽을 만드는 방법을 무엇이라고 하나요?", opts:["몰레","닉스타말화","텍스멕스","토르티야"], ans:[1],
+       ok:"맞아요. 이 반죽으로 토르티야를 만들어요.", hint:"‘역사적 배경’ 첫 문장의 괄호 안을 확인해 보세요." },
+     { lv:"think", type:"text", q:"‘고민해 볼 점’에 따르면 이 음식문화의 만남은 어떤 관계 속에서 일어났나요? 그 점을 기억해야 하는 이유도 짧게 써 보세요.", ph:"___ 관계 속에서 일어났다. 기억해야 하는 이유는 ___" },
+     { lv:"deep", type:"text", q:"‘멕시코 음식’ 하면 떠오르는 이미지는 무엇인가요? 그 이미지에서 빠져 있는 지역, 사람, 역사는 무엇일까요?", ph:"내가 떠올린 이미지와, 그 이미지에서 빠진 것을 적어 보세요." }
+   ],
+   src:[
+     { t:"UNESCO 무형유산 목록, Traditional Mexican cuisine (2010)", u:"https://ich.unesco.org/en/RL/traditional-mexican-cuisine-ancestral-ongoing-community-culture-the-michoacan-paradigm-00400" },
+     { t:"Jeffrey M. Pilcher, Planet Taco: A Global History of Mexican Food, Oxford University Press, 2012 (도서)", u:"" }
+   ]},
+ { id:"C", tab:"C. 미국 속 멕시코 음식", title:"멕시코 음식의 미국 내 변형과 확산", sub:"미국 남서부에서 전국으로 · 19세기~현재",
+   art:"texmex", artCap:"직접 그린 도식: 국경을 넘어 바뀌고 퍼지는 음식",
+   history:[
+     "텍사스, 캘리포니아 등 미국 남서부는 1848년 미국-멕시코 전쟁이 끝나기 전까지 멕시코 영토였고, 그 뒤에도 멕시코계 주민이 계속 살아왔어요.",
+     "텍사스의 멕시코계 주민(테하노) 사이에서 지역 재료를 활용한 ‘텍스멕스(Tex-Mex)’ 요리가 발전했어요. 19세기 말 샌안토니오에서는 광장에서 칠리를 파는 여성 상인들이 유명했다고 알려져 있어요."+V,
+     "20세기 중반 이후 식당 체인, 포장 식품 등을 통해 멕시코 음식이 미국 전역에 퍼졌어요. 1962년 캘리포니아에서 시작된 타코 체인점이 대표적인 예로 자주 언급돼요."+V
+   ],
+   pos:["음식이 새로운 환경과 입맛에 맞게 변하면서 더 많은 사람이 즐기게 되었어요.","텍스멕스는 멕시코계 미국인이 오랜 시간 만들어 온 고유한 지역 음식문화예요. 바뀌었다고 해서 ‘가짜’나 ‘왜곡’이라고 단정할 수는 없어요.","멕시코계 요리사와 상인에게 일자리와 사업 기회가 되기도 해요."],
+   neg:["음식이 상품으로 크게 팔릴 때, 원래의 역사와 의미를 모른 채 소비될 수 있어요.","이익과 명성이 그 음식문화를 만든 공동체가 아니라 다른 곳으로 주로 돌아간다면 ‘기여의 인정’ 문제가 생길 수 있어요."],
+   qs:[
+     { lv:"read", type:"one", q:"1848년 이전까지 텍사스·캘리포니아는 어느 나라의 영토였나요?", opts:["스페인","프랑스","멕시코","캐나다"], ans:[2],
+       ok:"맞아요. 그래서 이 지역에는 멕시코계 주민이 오래전부터 살아왔어요.", hint:"‘역사적 배경’ 첫 문장을 다시 읽어 보세요." },
+     { lv:"read", type:"one", q:"‘텍스멕스’ 요리는 누구 사이에서 발전했나요?", opts:["텍사스의 멕시코계 주민(테하노)","스페인의 왕실 요리사","프랑스 이민자","캐나다의 원주민"], ans:[0],
+       ok:"맞아요. 그래서 텍스멕스는 멕시코계 미국인이 만든 지역 음식문화로 볼 수 있어요.", hint:"‘역사적 배경’ 두 번째 문장에 나와 있어요." },
+     { lv:"think", type:"text", q:"멕시코 음식이 미국에 퍼진 현상에서 좋은 점 하나와 고민할 점 하나를 사례에서 찾아 써 보세요.", ph:"좋은 점은 ___이고, 고민할 점은 ___이다." },
+     { lv:"deep", type:"text", q:"현지에 맞게 바뀐 음식은 ‘가짜’일까요? 음식이 바뀌는 것과, 그 음식을 만든 사람들의 기여가 잊히는 것은 어떻게 다를까요?", ph:"두 가지가 어떻게 다른지 내 생각을 적어 보세요." }
+   ],
+   src:[
+     { t:"Jeffrey M. Pilcher, Planet Taco, Oxford University Press, 2012 (도서)", u:"" },
+     { t:"Gustavo Arellano, Taco USA: How Mexican Food Conquered America, Scribner, 2012 (도서)", u:"" },
+     { t:"Robb Walsh, The Tex-Mex Cookbook, Broadway Books, 2004 (도서)", u:"" }
+   ]}
+];
+
+const LENS = { mix:"문화 교류·창작", attitude:"차이를 대하는 태도", market:"상업화", credit:"기여의 인정" };
+const CARDS = [
+ { id:1, t:"서로 다른 음악적 전통이 만나 새로운 음악 장르가 발전한다.", lens:["mix"], cases:"A",
+   p:{ pos:"새로운 예술과 표현이 생기는 점에 주목했어요.", neg:"만남이 차별이나 강제 속에서 일어났다면 그 과정의 고통도 보아야 해요.", both:"결과는 새로운 예술이지만, 과정은 대등하지 않았을 수 있어요." } },
+ { id:2, t:"다양한 음식문화를 접하며 다른 문화에 대한 관심이 높아진다.", lens:["attitude"], cases:"B·C",
+   p:{ pos:"낯선 문화에 대한 이해와 존중의 출발점이 될 수 있어요.", neg:"관심이 맛에만 머물고 사람과 역사로 이어지지 않으면 피상적일 수 있어요.", both:"관심이 존중으로 이어질지는 태도에 달려 있어요." } },
+ { id:3, t:"문화가 상품으로 인기를 얻지만, 그 문화를 발전시킨 사람들의 기여는 충분히 알려지지 않을 수 있다.", lens:["market","credit"], cases:"A·C",
+   p:{ pos:"인기 덕분에 문화가 널리 퍼지고 보존될 수 있어요.", neg:"이익과 명성이 만든 사람들에게 돌아가지 않는 불공정이 생길 수 있어요.", both:"확산과 인정 부족이 동시에 일어날 수 있어요." } },
+ { id:4, t:"음식이 다른 지역의 입맛에 맞게 변형되어 더 많은 사람이 즐기게 된다.", lens:["mix","market"], cases:"C",
+   p:{ pos:"문화는 원래 변하며 살아 있어요. 텍스멕스처럼 새로운 지역 문화가 되기도 해요.", neg:"변형된 모습만 알려지면 원래 음식이 잘못 이해될 수 있어요.", both:"변형 자체는 자연스럽지만, 기원에 대한 설명이 함께하는지가 중요해요." } },
+ { id:5, t:"문화의 역사적 맥락이 생략되면서 특정 문화에 대한 고정관념이 강화될 수 있다.", lens:["attitude","market"], cases:"B·C",
+   p:{ pos:"이 카드를 긍정으로 보기는 어려워요. 혹시 그렇게 봤다면 이유를 꼭 적어 보세요.", neg:"고정관념은 그 문화를 가진 사람들을 오해하고 낮춰 보게 만들 수 있어요.", both:"쉽게 알려진다는 장점 뒤에 단순화라는 대가가 있다고 볼 수도 있어요." } },
+ { id:6, t:"서로 다른 문화가 만나 새로운 표현 방식과 창작 활동이 생겨난다.", lens:["mix"], cases:"A·B",
+   p:{ pos:"창의성과 다양성이 커지는 점에 주목했어요.", neg:"누구의 창작으로 기록되는지에 따라 기여가 가려질 수 있어요.", both:"창작은 늘어나지만 공정한 인정이 함께해야 해요." } },
+ { id:7, t:"낯선 음식이나 음악을 ‘이상하다’며 낮춰 보는 태도는 그 문화를 가진 사람들에 대한 차별로 이어질 수 있다.", lens:["attitude"], cases:"공통",
+   p:{ pos:"이 카드는 긍정으로 보기 어려워요.", neg:"문제는 문화의 차이가 아니라 차이를 낮춰 보는 태도예요.", both:"낯섦을 느끼는 것은 자연스럽지만, 그것을 낮춰 보는 순간 문제가 돼요." } },
+ { id:8, t:"문화를 만들어 온 공동체가 식당·공연·축제를 직접 운영하며 문화를 알리고 경제적 이익도 얻는다.", lens:["market","credit"], cases:"공통",
+   p:{ pos:"상업화가 공동체의 기여를 인정하고 보상하는 방법이 될 수 있어요.", neg:"관광객 입맛에 맞추느라 공동체가 원하지 않는 방식으로 바뀔 위험도 있어요.", both:"누가 주도하고 누가 이익을 얻는지가 판단의 열쇠예요." } }
+];
+
+const ART = {
+ jazz:`<svg viewBox="0 0 220 150" role="img" aria-label="여러 선이 모여 트럼펫으로 들어가는 도식">
+   <path d="M10 30 C70 30 80 70 120 72" stroke="#B23A48" stroke-width="5" fill="none"/>
+   <path d="M10 72 C60 72 80 72 120 74" stroke="#C9962B" stroke-width="5" fill="none"/>
+   <path d="M10 114 C70 114 80 76 120 76" stroke="#22324A" stroke-width="5" fill="none"/>
+   <text x="8" y="22" font-size="10" fill="#5A6577">아프리카계 리듬</text><text x="8" y="64" font-size="10" fill="#5A6577">블루스·래그타임</text><text x="8" y="132" font-size="10" fill="#5A6577">유럽식 금관 악기</text>
+   <rect x="118" y="68" width="48" height="12" rx="4" fill="#C9962B"/><path d="M166 74 L206 52 L206 96 Z" fill="#C9962B"/>
+   <circle cx="134" cy="62" r="4" fill="#22324A"/><circle cx="146" cy="62" r="4" fill="#22324A"/><circle cx="158" cy="62" r="4" fill="#22324A"/>
+   <text x="186" y="40" font-size="16" fill="#6A4FB3">♪</text><text x="200" y="118" font-size="14" fill="#6A4FB3">♫</text></svg>`,
+ mexico:`<svg viewBox="0 0 220 150" role="img" aria-label="옥수수와 고추, 밀과 가축 기호가 토르티야로 모이는 도식">
+   <g transform="translate(22,18)"><ellipse cx="18" cy="30" rx="12" ry="26" fill="#E3B23C"/><path d="M6 30 Q-6 50 8 62 M30 30 Q42 50 28 62" stroke="#3E8E5A" stroke-width="5" fill="none"/></g>
+   <path d="M70 30 Q86 20 92 40 Q80 64 68 60 Q74 44 70 30Z" fill="#B23A48"/><path d="M76 24 l8 -8" stroke="#3E8E5A" stroke-width="3"/>
+   <text x="20" y="98" font-size="10" fill="#5A6577">아메리카 작물</text>
+   <g transform="translate(150,14)"><path d="M14 0 v64" stroke="#B7791F" stroke-width="3"/><g fill="#C9962B"><ellipse cx="8" cy="10" rx="6" ry="4"/><ellipse cx="20" cy="18" rx="6" ry="4"/><ellipse cx="8" cy="26" rx="6" ry="4"/><ellipse cx="20" cy="34" rx="6" ry="4"/></g>
+   <circle cx="48" cy="40" r="12" fill="#E8B4BC"/><circle cx="44" cy="37" r="2" fill="#22324A"/></g>
+   <text x="150" y="98" font-size="10" fill="#5A6577">유럽에서 온 밀·가축</text>
+   <ellipse cx="110" cy="128" rx="54" ry="13" fill="#E9D7A8" stroke="#C9962B" stroke-width="2"/>
+   <path d="M60 80 L100 118 M170 80 L120 118" stroke="#22324A" stroke-width="2" stroke-dasharray="4 4"/></svg>`,
+ texmex:`<svg viewBox="0 0 220 150" role="img" aria-label="국경선을 넘어 타코 모양이 여러 곳으로 퍼지는 도식">
+   <path d="M0 78 H220" stroke="#5A6577" stroke-width="2" stroke-dasharray="6 5"/>
+   <text x="6" y="72" font-size="10" fill="#5A6577">미국</text><text x="6" y="94" font-size="10" fill="#5A6577">멕시코</text>
+   <path d="M88 128 a22 22 0 0 1 44 0 Z" fill="#E3B23C"/><path d="M92 124 q18 -14 36 0" stroke="#3E8E5A" stroke-width="4" fill="none"/>
+   <path d="M110 104 C110 80 70 60 50 36" stroke="#6A4FB3" stroke-width="3" fill="none"/><path d="M110 104 C110 80 150 60 176 30" stroke="#6A4FB3" stroke-width="3" fill="none"/><path d="M110 104 V40" stroke="#6A4FB3" stroke-width="3" fill="none"/>
+   <g fill="#C9962B"><path d="M38 36 a12 12 0 0 1 24 0Z"/><path d="M98 38 a12 12 0 0 1 24 0Z"/><path d="M164 30 a12 12 0 0 1 24 0Z"/></g>
+   <rect x="160" y="40" width="28" height="18" rx="3" fill="#22324A"/><text x="174" y="53" font-size="9" fill="#fff" text-anchor="middle">상품</text></svg>`
+};
+
+/* ================= 상태 ================= */
+const KEY = "hybrid2faces:v1";
+const blank = () => ({ step:0, tab:0, seen:[], memos:{}, ans:{}, sort:{}, reasons:{}, b1:"", b2:"", b3:"", full:"", fullEdited:false, ev:[], name:"" });
+let S = blank();
+try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(blank(), JSON.parse(raw)); } catch(e) {}
+if (!S.ans) S.ans = {};
+CASES.forEach(c => { if (S.memos[c.id] && !S.ans[c.id+"-3"]) S.ans[c.id+"-3"] = S.memos[c.id]; });
+const LV = { read:"내용 확인", think:"생각하기", deep:"도전 질문" };
+const isCorrect = (q, v) => Array.isArray(v) && v.length === q.ans.length && q.ans.every(x => v.includes(x));
+const qDone = (c, i) => { const q = c.qs[i], v = S.ans[c.id+"-"+i]; return q.type === "text" ? !!(v && v.trim()) : (q.type === "one" ? Array.isArray(v) && v.length > 0 : !!S.ans[c.id+"-"+i+"-checked"]); };
+const doneCount = c => c.qs.filter((_,i) => qDone(c,i)).length;
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} };
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const catOf = id => S.sort[id] || "none";
+function toast(msg){ const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove("show"), 1800); }
+const pill = c => `<span class="pill ${c}"><span class="sym ${c}">${CATS[c].sym}</span>${CATS[c].short}</span>`;
+
+/* ================= 내비게이션 ================= */
+function renderStepper(){
+  $("#stepper").innerHTML = STEPS.map((n,i) => `<li><button data-go="${i}" class="${i < S.step ? "done" : ""}" ${i === S.step ? 'aria-current="step"' : ""}><span class="n">${i+1}</span><span class="lbl">${n}</span></button></li>`).join("");
+  $("#stepper").querySelectorAll("button").forEach(b => b.onclick = () => go(+b.dataset.go));
+  $("#barfill").style.width = `${(S.step)/(STEPS.length-1)*100}%`;
+}
+function go(i){
+  S.step = Math.max(0, Math.min(STEPS.length-1, i)); save();
+  document.querySelectorAll(".screen").forEach((s,k) => s.classList.toggle("on", k === S.step));
+  renderStepper();
+  $("#prevBtn").disabled = S.step === 0;
+  $("#prevBtn").style.visibility = S.step === 0 ? "hidden" : "visible";
+  $("#nextBtn").style.display = S.step === STEPS.length-1 ? "none" : "";
+  $("#nextBtn").textContent = S.step === 0 ? "탐정 활동 시작" : S.step === 3 ? "탐구 결과 보기" : "다음";
+  if (S.step === 1) renderCase();
+  if (S.step === 2) renderSort();
+  if (S.step === 3) renderJudge();
+  if (S.step === 4) renderReport();
+  window.scrollTo({ top:0 });
+  const h = document.querySelectorAll(".screen")[S.step].querySelector("h1,h2"); if (h){ h.setAttribute("tabindex","-1"); h.focus({ preventScroll:true }); }
+}
+$("#prevBtn").onclick = () => go(S.step-1);
+$("#nextBtn").onclick = () => {
+  if (S.step === 1 && S.seen.length < CASES.length && !confirm(`아직 읽지 않은 사건 파일이 ${CASES.length - S.seen.length}개 있어요. 그래도 다음 단계로 갈까요?`)) return;
+  if (S.step === 2){ const left = CARDS.filter(c => catOf(c.id) === "none").length;
+    if (left && !confirm(`아직 분류하지 않은 카드가 ${left}장 있어요. 그래도 다음 단계로 갈까요?`)) return; }
+  go(S.step+1);
+};
+document.querySelectorAll("[data-next]").forEach(b => b.onclick = () => go(1));
+
+/* ================= STEP 2 ================= */
+function renderCase(){
+  const c = CASES[S.tab];
+  if (!S.seen.includes(c.id)){ S.seen.push(c.id); save(); }
+  $("#tabs").innerHTML = CASES.map((x,i) => `<button class="tab" role="tab" id="tab${i}" aria-selected="${i===S.tab}" aria-controls="casefile" data-tab="${i}">${esc(x.tab)}${S.seen.includes(x.id) ? `<span class="seen">${doneCount(x)} / ${x.qs.length}</span>` : ""}</button>`).join("");
+  $("#tabs").querySelectorAll(".tab").forEach(b => b.onclick = () => { S.tab = +b.dataset.tab; save(); renderCase(); });
+  const li = a => a.map(x => `<li>${x}</li>`).join("");
+  $("#casefile").setAttribute("aria-labelledby", "tab"+S.tab);
+  $("#casefile").innerHTML = `
+    <div class="casehead">
+      <figure class="illus" style="margin:0">${ART[c.art]}<figcaption>${esc(c.artCap)}</figcaption></figure>
+      <div><div class="kicker">사건 파일 ${c.id}</div><h3>${esc(c.title)}</h3><p class="lead" style="margin:0">${esc(c.sub)}</p></div>
+    </div>
+    <div class="grid2">
+      <div class="sec history"><h4>역사적 배경</h4><ul>${li(c.history)}</ul></div>
+      <div class="sec pos"><h4><span class="sym pos">+</span>긍정적으로 볼 수 있는 점</h4><ul>${li(c.pos)}</ul></div>
+      <div class="sec neg"><h4><span class="sym neg">!</span>고민해 볼 점</h4><ul>${li(c.neg)}</ul></div>
+    </div>
+    <div class="qwrap">
+      <h4>탐정 질문</h4>
+      <p style="margin:0">1~2번은 사례에서 답을 찾아 고르면 돼요. 3~4번은 짧게 내 생각을 써 보세요. 4번 도전 질문은 선택이에요.</p>
+      ${c.qs.map((q,i) => qHTML(c,q,i)).join("")}
+    </div>
+    <div class="sources">
+      <b>참고 자료</b> <span class="verify">검증 필요</span>
+      <ul>${c.src.map(s => `<li>${esc(s.t)}${s.u ? ` · <a href="${s.u}" target="_blank" rel="noopener">${esc(s.u)}</a>` : ""}</li>`).join("")}</ul>
+      <p style="margin:6px 0 0">이 앱을 만들 때 위 링크와 도서를 직접 열어 확인하지는 못했어요. <span class="flag">수업 전 확인</span> 표시가 있는 문장은 특히 출처와 대조해 주세요.</p>
+    </div>
+    <div class="tools">${S.tab < CASES.length-1 ? `<button class="btn line sm" id="nextCase">다음 사건 파일: ${esc(CASES[S.tab+1].tab)}</button>` : `<span style="font-size:14px;color:var(--muted)">사건 파일을 모두 확인했다면 ‘다음’을 눌러 분류 미션으로 가세요.</span>`}</div>`;
+  bindQs(c);
+  const n = $("#nextCase"); if (n) n.onclick = () => { S.tab++; save(); renderCase(); $("#tabs").scrollIntoView({ block:"start", behavior:"smooth" }); };
+}
+
+function fbHTML(q, key){
+  const v = S.ans[key];
+  const shown = q.type === "one" ? (Array.isArray(v) && v.length) : S.ans[key+"-checked"];
+  if (!shown) return "";
+  return isCorrect(q, v)
+    ? `<div class="fb ok" role="status"><b>✓</b><span>${esc(q.ok)}</span></div>`
+    : `<div class="fb no" role="status"><b>↻</b><span>다시 살펴보세요. ${esc(q.hint)}</span></div>`;
+}
+function qHTML(c, q, i){
+  const key = c.id+"-"+i, v = S.ans[key];
+  let body = "";
+  if (q.type === "text"){
+    body = `<label class="sr" for="qa-${key}">${esc(q.q)}</label><textarea id="qa-${key}" data-qtext="${key}" rows="${q.lv==="deep"?3:2}" placeholder="${esc(q.ph||"")}">${esc(v||"")}</textarea>`;
+  } else {
+    const sel = Array.isArray(v) ? v : [];
+    const attr = q.type === "one" ? "aria-pressed" : "aria-checked";
+    body = `<div class="opts" role="group" aria-label="${esc(q.q)}">${q.opts.map((o,k) =>
+      `<button class="opt ${q.type}" data-q="${key}" data-k="${k}" ${q.type==="multi"?'role="checkbox"':""} ${attr}="${sel.includes(k)}"><span class="mk" aria-hidden="true">${sel.includes(k)?"✓":""}</span>${esc(o)}</button>`).join("")}</div>
+      ${q.type === "multi" ? `<div class="tools" style="margin-top:8px"><button class="btn line sm" data-qcheck="${key}" ${sel.length?"":"disabled"}>답 확인하기</button><span style="font-size:13px;color:var(--muted)">해당하는 것을 모두 고른 뒤 눌러요.</span></div>` : ""}
+      <div id="fb-${key}">${fbHTML(q, key)}</div>`;
+  }
+  return `<div class="qi"><div class="qh"><span class="qn">${i+1}</span><span style="flex:1"><span class="lv ${q.lv}">${LV[q.lv]}${q.lv==="deep"?" · 선택":""}</span><span class="qt">${esc(q.q)}</span></span></div>${body}</div>`;
+}
+function bindQs(c){
+  const box = $("#casefile");
+  const refreshTab = () => { const t = $("#tab"+S.tab+" .seen"); if (t) t.textContent = `${doneCount(c)} / ${c.qs.length}`; };
+  box.querySelectorAll("[data-qtext]").forEach(t => t.oninput = () => { S.ans[t.dataset.qtext] = t.value; save(); refreshTab(); });
+  box.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+    const key = b.dataset.q, k = +b.dataset.k, i = +key.split("-")[1], q = c.qs[i];
+    let v = Array.isArray(S.ans[key]) ? [...S.ans[key]] : [];
+    if (q.type === "one") v = [k]; else { v = v.includes(k) ? v.filter(x => x !== k) : [...v, k]; delete S.ans[key+"-checked"]; }
+    S.ans[key] = v; save();
+    b.closest(".qi").outerHTML = qHTML(c, q, i); bindQs(c); refreshTab();
+    const again = box.querySelector(`.opt[data-q="${key}"][data-k="${k}"]`); if (again) again.focus();
+  });
+  box.querySelectorAll("[data-qcheck]").forEach(b => b.onclick = () => {
+    const key = b.dataset.qcheck, i = +key.split("-")[1];
+    S.ans[key+"-checked"] = true; save();
+    b.closest(".qi").outerHTML = qHTML(c, c.qs[i], i); bindQs(c); refreshTab();
+    const fb = $("#fb-"+key); if (fb) fb.scrollIntoView({ block:"nearest" });
+  });
+}
+function answerText(c, i){
+  const q = c.qs[i], v = S.ans[c.id+"-"+i];
+  if (q.type === "text") return (v && v.trim()) || "—";
+  if (!Array.isArray(v) || !v.length) return "—";
+  const picked = v.slice().sort().map(k => q.opts[k]).join(", ");
+  if (q.type === "multi" && !S.ans[c.id+"-"+i+"-checked"]) return picked + " (확인 전)";
+  return picked + (isCorrect(q, v) ? " ✓" : " (다시 확인 필요)");
+}
+
+/* ================= STEP 3 ================= */
+function cardHTML(c){
+  const cur = catOf(c.id);
+  return `<div class="icard" draggable="true" data-card="${c.id}" id="card${c.id}">
+    <div class="meta"><span class="tag">일반적 상황을 가정한 교육용 사례</span>${c.lens.map(l => `<span class="tag lens">${LENS[l]}</span>`).join("")}<span class="tag">관련 사례 ${c.cases}</span></div>
+    <div class="txt"><span class="num">${c.id}</span>${esc(c.t)}</div>
+    <div class="moves" role="group" aria-label="카드 ${c.id} 분류하기">
+      ${["pos","neg","both"].map(k => `<button class="mv ${k}" data-move="${k}" aria-pressed="${cur===k}"><span class="s">${CATS[k].sym}</span>${CATS[k].short}</button>`).join("")}
+      ${cur !== "none" ? `<button class="mv none" data-move="none"><span class="s">↺</span>미분류로</button>` : ""}
+    </div>
+    ${cur !== "none" ? `<div class="reason"><label class="sr" for="rs${c.id}">분류한 이유</label><input type="text" id="rs${c.id}" data-reason="${c.id}" placeholder="이렇게 분류한 이유 (선택)" value="${esc(S.reasons[c.id] || "")}"></div>
+      <details class="persp"><summary>다른 관점도 살펴보기</summary><ul>
+        <li>${pill("pos")} ${esc(c.p.pos)}</li><li>${pill("neg")} ${esc(c.p.neg)}</li><li>${pill("both")} ${esc(c.p.both)}</li></ul></details>` : ""}
+  </div>`;
+}
+function renderSort(){
+  $("#zones").innerHTML = ["pos","neg","both"].map(k => `
+    <div class="zone ${k}" data-zone="${k}" id="zone-${k}">
+      <h3><span class="sym ${k}">${CATS[k].sym}</span>${CATS[k].name}<span class="cnt" id="cnt-${k}"></span></h3>
+      <div class="cards" id="cards-${k}"></div>
+    </div>`).join("");
+  ["pos","neg","both","none"].forEach(k => {
+    const list = CARDS.filter(c => catOf(c.id) === k);
+    $("#cards-"+k).innerHTML = list.length ? list.map(cardHTML).join("") : `<div class="empty">${k === "none" ? "모든 카드를 분류했어요. 다시 옮기고 싶다면 카드의 버튼을 누르세요." : "카드를 여기로 끌어오거나, 카드의 버튼을 누르세요."}</div>`;
+    $("#cnt-"+k).textContent = `${list.length}장`;
+  });
+  const done = CARDS.filter(c => catOf(c.id) !== "none").length;
+  $("#sortStatus").textContent = `${CARDS.length}장 중 ${done}장 분류함`;
+  bindSort();
+  if (!$("#summaryBox").hidden) renderSummary();
+}
+function moveCard(id, k, focus){
+  if (k === "none") delete S.sort[id]; else S.sort[id] = k;
+  save(); renderSort();
+  if (focus){ const el = document.querySelector(`#card${id} .mv[data-move="${k}"]`) || document.querySelector(`#card${id} .mv`); if (el) el.focus({ preventScroll:false }); }
+  toast(k === "none" ? `카드 ${id}을(를) 미분류로 옮겼어요` : `카드 ${id} → ${CATS[k].name}`);
+}
+function bindSort(){
+  document.querySelectorAll(".icard").forEach(card => {
+    const id = +card.dataset.card;
+    card.querySelectorAll("[data-move]").forEach(b => b.onclick = () => moveCard(id, b.dataset.move, true));
+    card.addEventListener("dragstart", e => { e.dataTransfer.setData("text/plain", String(id)); e.dataTransfer.effectAllowed = "move"; card.classList.add("dragging"); });
+    card.addEventListener("dragend", () => card.classList.remove("dragging"));
+    const r = card.querySelector("[data-reason]");
+    if (r){ r.oninput = () => { S.reasons[id] = r.value; save(); };
+      r.addEventListener("mousedown", () => card.setAttribute("draggable","false"));
+      r.addEventListener("blur", () => card.setAttribute("draggable","true")); }
+  });
+  document.querySelectorAll("[data-zone]").forEach(z => {
+    z.ondragover = e => { e.preventDefault(); z.classList.add("over"); };
+    z.ondragleave = e => { if (!z.contains(e.relatedTarget)) z.classList.remove("over"); };
+    z.ondrop = e => { e.preventDefault(); z.classList.remove("over"); const id = +e.dataTransfer.getData("text/plain"); if (id) moveCard(id, z.dataset.zone, false); };
+  });
+}
+$("#resetSort").onclick = () => { if (!confirm("카드 분류와 분류 이유를 모두 지울까요?")) return; S.sort = {}; S.reasons = {}; S.ev = []; save(); renderSort(); toast("분류를 초기화했어요"); };
+$("#toggleSummary").onclick = () => { const b = $("#summaryBox"); b.hidden = !b.hidden; $("#toggleSummary").setAttribute("aria-expanded", !b.hidden); $("#toggleSummary").textContent = b.hidden ? "내 분류 한눈에 보기" : "한눈에 보기 닫기"; if (!b.hidden) renderSummary(); };
+function summaryTable(){
+  return `<div class="tablewrap"><table class="summary"><thead><tr><th>카드</th><th>나의 분류</th><th>나의 이유</th></tr></thead><tbody>
+    ${CARDS.map(c => `<tr><td><b>${c.id}.</b> ${esc(c.t)}</td><td>${pill(catOf(c.id))}</td><td>${esc(S.reasons[c.id] || "—")}</td></tr>`).join("")}</tbody></table></div>`;
+}
+function renderSummary(){ $("#summaryBox").innerHTML = summaryTable(); }
+
+/* ================= STEP 4 ================= */
+const compose = () => `문화 혼종성은 ${S.b1.trim() || "____"}라는 점에서 가치가 있다. 하지만 ${S.b2.trim() || "____"}라는 문제도 발생할 수 있다. 따라서 문화적 다양성을 존중하기 위해서는 ${S.b3.trim() || "____"}해야 한다.`;
+function renderJudge(){
+  ["b1","b2","b3"].forEach(k => { const el = $("#"+k); el.value = S[k]; el.oninput = () => { S[k] = el.value; if (!S.fullEdited){ S.full = compose(); $("#full").value = S.full; } save(); renderChecks(); }; });
+  if (!S.fullEdited) S.full = compose();
+  $("#full").value = S.full;
+  $("#full").oninput = () => { S.full = $("#full").value; S.fullEdited = true; save(); editNote(); renderChecks(); };
+  $("#rebuild").onclick = () => { S.fullEdited = false; S.full = compose(); $("#full").value = S.full; save(); editNote(); renderChecks(); toast("빈칸 내용으로 문장을 다시 만들었어요"); };
+  editNote();
+  const ordered = [...CARDS].sort((a,b) => ["pos","both","neg","none"].indexOf(catOf(a.id)) - ["pos","both","neg","none"].indexOf(catOf(b.id)));
+  $("#evlist").innerHTML = ordered.map(c => `<label class="ev"><input type="checkbox" data-ev="${c.id}" ${S.ev.includes(c.id)?"checked":""}>
+    <span><span class="t"><b>${c.id}.</b> ${esc(c.t)}</span><span class="r" style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">${pill(catOf(c.id))}${S.reasons[c.id] ? `이유: ${esc(S.reasons[c.id])}` : ""}</span></span></label>`).join("");
+  $("#evlist").querySelectorAll("[data-ev]").forEach(cb => cb.onchange = () => { const id = +cb.dataset.ev; S.ev = cb.checked ? [...S.ev, id] : S.ev.filter(x => x !== id); save(); renderChecks(); });
+  renderChecks();
+}
+function editNote(){ $("#editNote").textContent = S.fullEdited ? "직접 고친 문장이에요. 빈칸을 바꿔도 이 문장은 그대로 유지돼요." : "빈칸을 채우면 자동으로 완성돼요."; }
+function renderChecks(){
+  const evCats = S.ev.map(catOf);
+  const txt = S.full + " " + S.b1 + S.b2 + S.b3;
+  const caseWords = ["재즈","뉴올리언스","멕시코","타코","텍스멕스","토르티야","몰레","칠리","블루스","옥수수"];
+  const items = [
+    [S.b1.trim() && S.b2.trim() && S.b3.trim(), "세 빈칸을 모두 채웠어요.", "가치·문제·실천 세 빈칸을 모두 채워 보세요."],
+    [caseWords.some(w => txt.includes(w)), "구체적인 사례(재즈, 멕시코 음식 등)를 언급했어요.", "사건 파일 A·B·C 중 하나의 사례 이름을 넣으면 설득력이 커져요."],
+    [S.ev.length >= 1, `근거 카드 ${S.ev.length}장을 골랐어요.`, "판단을 뒷받침할 근거 카드를 1장 이상 골라 보세요."],
+    [evCats.some(c => c === "pos" || c === "both"), "‘가치’를 뒷받침하는 긍정·양면 카드가 있어요.", "‘가치’ 빈칸과 연결되는 긍정 또는 양면 카드가 있는지 살펴보세요."],
+    [evCats.some(c => c === "neg" || c === "both"), "‘문제’를 뒷받침하는 문제점·양면 카드가 있어요.", "‘문제’ 빈칸과 연결되는 문제점 또는 양면 카드가 있는지 살펴보세요."],
+    [S.b3.trim().length >= 12, "실천 방안을 구체적으로 썼어요.", "실천 빈칸에 ‘누가, 무엇을’ 할지 조금 더 구체적으로 써 보세요."],
+    [/(차이|태도|상업|상품|기여|인정|기원|역사)/.test(S.b2), "문제를 ‘문화의 차이’가 아닌 태도·상업화·기여 인정 등으로 구체화했어요.", "문제가 ‘문화가 섞인 것 자체’인지, ‘차이를 대하는 태도·상업화·기여 인정’인지 구분해 보세요."]
+  ];
+  $("#checklist").innerHTML = items.map(([ok, a, b]) => `<li><span class="ic ${ok?"ok":"todo"}" aria-hidden="true">${ok?"✓":"·"}</span><span><span class="st">${ok?"확인":"다듬기"}</span>${ok ? a : b}</span></li>`).join("");
+}
+
+/* ================= STEP 5 ================= */
+function renderReport(){
+  $("#sname").value = S.name;
+  $("#sname").oninput = () => { S.name = $("#sname").value; save(); $("#rname").textContent = S.name || "(이름 미입력)"; };
+  const evCards = S.ev.map(id => CARDS.find(c => c.id === id)).filter(Boolean);
+  const date = new Date().toLocaleDateString("ko-KR");
+  $("#report").innerHTML = `
+    <h2 style="font-size:24px;margin-bottom:4px">나의 탐구 결과 · 문화 혼종성의 두 얼굴</h2>
+    <p style="color:var(--muted);margin:0">탐정: <b id="rname">${esc(S.name || "(이름 미입력)")}</b> · ${date}</p>
+    <p class="question" style="margin-top:14px">핵심 질문: 서로 다른 문화의 만남은 새로운 문화를 만들어 내지만, 그 과정과 결과가 모두에게 긍정적이기만 할까?</p>
+    <h3>1. 나의 최종 판단</h3>
+    <div class="verdict">${esc(S.full.trim() || compose())}</div>
+    <h3>2. 판단의 근거 카드</h3>
+    ${evCards.length ? `<ul style="padding-left:20px;margin:0">${evCards.map(c => `<li style="margin-bottom:6px">${pill(catOf(c.id))} <b>${c.id}.</b> ${esc(c.t)}${S.reasons[c.id] ? `<br><span style="color:var(--muted);font-size:14px">나의 이유: ${esc(S.reasons[c.id])}</span>` : ""}</li>`).join("")}</ul>` : `<p style="color:var(--muted)">선택한 근거 카드가 없어요. STEP 4에서 골라 보세요.</p>`}
+    <h3>3. 사건 파일 탐정 질문</h3>
+    ${CASES.map(c => `<p class="memo" style="margin:10px 0 2px"><b>${esc(c.tab)}</b></p><ol style="margin:0 0 6px;padding-left:22px;font-size:14.5px">${c.qs.map((q,i) => `<li style="margin-bottom:4px">${esc(q.q)}<br><span style="color:var(--muted)">→ ${esc(answerText(c,i))}</span></li>`).join("")}</ol>`).join("")}
+    <h3>4. 영향 카드 분류 결과</h3>
+    <p style="font-size:13.5px;color:var(--muted)">모든 카드는 일반적 상황을 가정한 교육용 판단 카드예요.</p>
+    ${summaryTable()}
+    <p style="font-size:12.5px;color:var(--muted);margin-top:16px">사례 내용의 일부 사실(연도, 음반, 상인 등)은 수업 전 출처 확인이 필요한 항목으로 표시되어 있어요.</p>`;
+}
+function plainReport(){
+  const L = [];
+  L.push("[나의 탐구 결과] 문화 혼종성의 두 얼굴");
+  L.push(`탐정: ${S.name || "(이름 미입력)"} / ${new Date().toLocaleDateString("ko-KR")}`, "");
+  L.push("1. 나의 최종 판단", S.full.trim() || compose(), "");
+  L.push("2. 판단의 근거 카드");
+  if (!S.ev.length) L.push("- (선택 없음)");
+  S.ev.forEach(id => { const c = CARDS.find(x => x.id === id); L.push(`- [${CATS[catOf(id)].short}] ${id}. ${c.t}${S.reasons[id] ? ` / 이유: ${S.reasons[id]}` : ""}`); });
+  L.push("", "3. 사건 파일 탐정 질문");
+  CASES.forEach(c => { L.push(`[${c.tab}]`); c.qs.forEach((q,i) => L.push(`  ${i+1}. ${q.q}\n     → ${answerText(c,i)}`)); });
+  L.push("", "4. 영향 카드 분류 결과 (교육용 가정 사례)");
+  CARDS.forEach(c => L.push(`- ${c.id}. [${CATS[catOf(c.id)].short}] ${c.t}${S.reasons[c.id] ? ` / 이유: ${S.reasons[c.id]}` : ""}`));
+  return L.join("\n");
+}
+$("#copyBtn").onclick = () => {
+  const txt = plainReport();
+  const fallback = () => { const t = document.createElement("textarea"); t.value = txt; t.style.position = "fixed"; t.style.opacity = "0"; document.body.appendChild(t); t.select();
+    let ok = false; try { ok = document.execCommand("copy"); } catch(e) {} t.remove(); toast(ok ? "결과를 복사했어요" : "복사하지 못했어요. 인쇄 기능을 이용해 주세요."); };
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(txt).then(() => toast("결과를 복사했어요"), fallback); else fallback();
+};
+$("#printBtn").onclick = () => window.print();
+$("#resetAll").onclick = () => { if (!confirm("모든 메모, 분류, 판단을 지우고 처음부터 시작할까요?")) return; S = blank(); save(); go(0); toast("모든 기록을 지웠어요"); };
+
+go(S.step);
+</script>
+</body>
+</html>
