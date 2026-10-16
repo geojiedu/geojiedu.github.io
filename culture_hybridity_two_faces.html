@@ -66,7 +66,10 @@ main{max-width:1080px;margin:0 auto;padding:26px 20px 40px}
 .stamp{display:inline-block;border:2px solid var(--neg);color:var(--neg);font-weight:700;font-size:13px;padding:2px 10px;border-radius:6px;transform:rotate(-2deg)}
 .question{font-family:var(--serif);font-size:clamp(17px,2.2vw,21px);font-weight:600;border-left:4px solid var(--gold);padding:4px 0 4px 16px;margin:0 0 20px;max-width:34em}
 .hero-r{background:var(--navy);color:#fff;padding:30px;display:flex;flex-direction:column;justify-content:center;gap:12px}
-.hero-r svg{max-width:100%}
+.hero-r{align-items:center}
+.dotmap{width:100%;max-width:300px;height:auto}
+.hero-legend{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#C7D3E0;align-self:stretch;padding:0 6px}
+.hero-legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:0}
 .mission{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
 .box{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
 .box h3{font-size:17px;margin-bottom:8px}
@@ -75,7 +78,8 @@ main{max-width:1080px;margin:0 auto;padding:26px 20px 40px}
 
 /* step 2 */
 .tabs{display:flex;gap:6px;margin:18px 0 0;flex-wrap:wrap}
-.tab{background:#DDE3EA;border:0;border-radius:12px 12px 0 0;padding:10px 16px;cursor:pointer;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:8px}
+.tabs{scrollbar-width:thin}
+.tab{white-space:nowrap;background:#DDE3EA;border:0;border-radius:12px 12px 0 0;padding:10px 16px;cursor:pointer;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:8px}
 .tab[aria-selected="true"]{background:var(--paper);color:var(--ink)}
 .tab .seen{font-size:11.5px;font-weight:700;color:var(--pos);background:var(--pos-bg);border-radius:999px;padding:1px 8px}
 .casefile{background:var(--paper);border:1px solid var(--line);border-radius:0 16px 16px 16px;padding:24px}
@@ -83,11 +87,28 @@ main{max-width:1080px;margin:0 auto;padding:26px 20px 40px}
 .illus{background:var(--soft);border-radius:14px;padding:10px;border:1px solid var(--line)}
 .illus figcaption{font-size:12px;color:var(--muted);text-align:center;margin-top:4px}
 .casehead h3{font-size:24px;margin-bottom:6px}
+.flow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:14px 12px;margin-bottom:16px}
+.grp{display:flex;flex-direction:column;align-items:center;gap:6px;background:#fff;border:1.5px solid currentColor;border-radius:14px;padding:8px 10px 10px}
+.grp .og{font-size:11.5px;font-weight:700;border-radius:999px;padding:0 9px;background:currentColor}
+.grp .og{color:#fff}
+.grp.na{color:#2E7D4F}.grp.af{color:#B5531F}.grp.am{color:#8A5A00}.grp.eu{color:#2C5AA0}.grp.out{color:var(--navy)}
+.grp .og{background:none;color:inherit;border:1px solid currentColor;white-space:nowrap}
+.gi{display:flex;gap:8px}
+.fi{display:flex;flex-direction:column;align-items:center;gap:4px;width:88px;text-align:center}
+.fi .ic{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;background:color-mix(in srgb,currentColor 10%,#fff)}
+.fi .fl{font-size:12.5px;line-height:1.35;color:var(--ink);font-weight:500;word-break:keep-all}
+.grp.out{background:var(--navy);border-color:var(--navy)}
+.grp.out .og{color:#C9D5E4;border-color:#6F82A0}
+.grp.out .ic{background:rgba(255,255,255,.12);color:#fff}
+.grp.out .fl{color:#fff;font-weight:700}
+.op{font-size:22px;font-weight:700;color:var(--muted);width:20px;text-align:center}
+.op .ov{display:none}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .sec{border-radius:12px;padding:14px 16px;border:1px solid var(--line);background:var(--soft)}
 .sec h4{margin:0 0 6px;font-size:15px;display:flex;align-items:center;gap:8px}
 .sec ul{margin:0;padding-left:20px}
 .sec li{margin-bottom:4px}
+.sec b{font-weight:700;background:linear-gradient(transparent 62%,#F7E3AE 62%)}
 .sec.history{grid-column:1/-1;background:#fff}
 .sec.pos{background:var(--pos-bg);border-color:#BFDCD0}
 .sec.neg{background:var(--neg-bg);border-color:#EAC3C8}
@@ -166,6 +187,40 @@ table.summary th{background:var(--soft);font-size:13px;color:var(--muted)}
 .pill.pos{background:var(--pos-bg);color:var(--pos)} .pill.neg{background:var(--neg-bg);color:var(--neg)} .pill.both{background:var(--both-bg);color:var(--both)} .pill.none{background:var(--none-bg);color:var(--none)}
 .tablewrap{overflow-x:auto;margin-top:10px;border:1px solid var(--line);border-radius:12px}
 
+.who{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.who .w{border-radius:12px;padding:10px 14px;background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;font-size:14px}
+.who .w b{font-size:15px}
+.who .w span{color:var(--muted);font-size:13px}
+.who .own{border-left:5px solid #2E7D4F}.who .use{border-left:5px solid #2C5AA0}
+.scenes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.scene{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.scene .sh{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.scene .num{font-family:var(--serif);font-weight:800;color:var(--gold);font-size:18px}
+.scene .place{display:inline-flex;align-items:center;gap:4px;font-weight:700;font-size:14.5px}
+.scene .place svg{color:var(--neg)}
+.ptype{font-size:12px;font-weight:700;border-radius:999px;padding:1px 9px;border:1px solid}
+.ptype.make{color:#2E7D4F;border-color:#BFDCD0;background:var(--pos-bg)}
+.ptype.use{color:#2C5AA0;border-color:#C9D7EE;background:#EEF3FB}
+.scene .stxt{font-size:15px;line-height:1.6;margin:0}
+.jrow{display:grid;grid-template-columns:7.2em 1fr;gap:8px;align-items:center}
+.jrow .jl{font-size:13.5px;font-weight:700;padding-left:8px;border-left:4px solid}
+.jrow .jl.own{border-color:#2E7D4F}.jrow .jl.use{border-color:#2C5AA0}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.sg{border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:5px 4px;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;white-space:nowrap}
+.sg .s{font-weight:800;font-size:15px;line-height:1}
+.sg.pos .s{color:var(--pos)}.sg.neg .s{color:var(--neg)}.sg.both .s{color:var(--both)}
+.sg[aria-pressed="true"]{color:#fff;border-color:transparent}
+.sg.pos[aria-pressed="true"]{background:var(--pos)}.sg.neg[aria-pressed="true"]{background:var(--neg)}.sg.both[aria-pressed="true"]{background:var(--both)}
+.sg[aria-pressed="true"] .s{color:#fff}
+.scene .reason input{font-size:13.5px;padding:6px 10px}
+.scene.done{border-color:#9FB1C8}
+.balance{margin-top:18px}
+.bal{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.bal h3{font-family:var(--sans);font-size:16px;margin-bottom:4px}
+.brow{display:grid;grid-template-columns:7.2em 1fr;gap:10px;align-items:center;margin-top:10px}
+.bbar{display:flex;height:30px;border-radius:8px;overflow:hidden;background:var(--soft);border:1px solid var(--line)}
+.bbar span{display:flex;align-items:center;justify-content:center;color:#fff;font-size:12.5px;font-weight:700;white-space:nowrap;min-width:0}
+.bbar .pos{background:var(--pos)}.bbar .neg{background:var(--neg)}.bbar .both{background:var(--both)}
 /* step 4 */
 .frame{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-top:16px}
 .frame .ln{font-family:var(--serif);font-size:17px;font-weight:600;margin:12px 0 4px;line-height:1.5}
@@ -193,6 +248,12 @@ table.summary th{background:var(--soft);font-size:13px;color:var(--muted)}
 .report .memo b{display:inline-block;min-width:9em}
 .namefield{display:flex;gap:10px;align-items:center;margin:14px 0;flex-wrap:wrap}
 .namefield input{max-width:320px}
+.modal{position:fixed;inset:0;background:rgba(28,37,51,.55);display:grid;place-items:center;z-index:60;padding:20px}
+.mbox{background:#fff;border-radius:16px;padding:22px 22px 18px;max-width:420px;width:100%;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.mbox p{font-size:16px;margin:0 0 16px}
+.mbox .row{display:flex;justify-content:flex-end;gap:8px}
+.pill-pair{display:inline-flex;align-items:center;gap:5px;flex-wrap:wrap}
+.pill-pair .sl{font-size:12px;color:var(--muted)}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:10px;font-size:14px;z-index:50;opacity:0;pointer-events:none;transition:opacity .2s}
 .toast.show{opacity:1}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
@@ -202,6 +263,7 @@ table.summary th{background:var(--soft);font-size:13px;color:var(--muted)}
   .hero-r{display:none}
   .mission,.grid2,.two{grid-template-columns:1fr}
   .sortwrap{grid-template-columns:1fr}
+  .scenes{grid-template-columns:1fr}
   .casehead{grid-template-columns:1fr}
   .illus{max-width:280px}
   ol.stepper{margin-left:0;width:100%;overflow-x:auto;flex-wrap:nowrap}
@@ -210,7 +272,19 @@ table.summary th{background:var(--soft);font-size:13px;color:var(--muted)}
   .brand small{display:none}
 }
 @media (max-width:520px){
+  .flow{flex-direction:column;align-items:stretch}
+  .grp{flex-direction:row;justify-content:flex-start;gap:10px}
+  .grp .og{writing-mode:horizontal-tb;min-width:4.5em;text-align:center}
+  .fi{width:auto;flex-direction:row;gap:6px}.fi .ic{width:40px;height:40px;border-radius:11px}
+  .gi{flex-wrap:wrap;gap:6px 12px}
+  .op{width:auto;font-size:18px;line-height:1}
+  .op .oh{display:none}.op .ov{display:inline}
   .opts{grid-template-columns:1fr}
+  .who{grid-template-columns:1fr}
+  .jrow,.brow{grid-template-columns:1fr}
+  .jrow .jl{padding-left:6px}
+  .tabs{flex-wrap:nowrap;overflow-x:auto}
+  .tab{padding:9px 12px;font-size:14px}
   main{padding:18px 14px 30px}
   .hero-l,.casefile,.report{padding:18px}
   .pool .cards{grid-template-columns:1fr}
@@ -251,18 +325,17 @@ table.summary th{background:var(--soft);font-size:13px;color:var(--muted)}
       <p style="margin-top:12px;font-size:13.5px;color:var(--muted)">권장 시간 15~20분 · 작성 내용은 이 브라우저에만 저장됩니다.</p>
     </div>
     <div class="hero-r" aria-hidden="true">
-      <svg viewBox="0 0 300 230" width="300">
-        <circle cx="122" cy="105" r="70" fill="none" stroke="#C9962B" stroke-width="10"/>
-        <line x1="172" y1="155" x2="232" y2="215" stroke="#C9962B" stroke-width="16" stroke-linecap="round"/>
-        <g opacity=".95">
-          <circle cx="98" cy="96" r="30" fill="#1F7A5A" opacity=".85"/>
-          <circle cx="146" cy="96" r="30" fill="#B23A48" opacity=".85"/>
-          <path d="M122 76 a30 30 0 0 1 0 40 a30 30 0 0 1 0-40z" fill="#6A4FB3"/>
-        </g>
-        <text x="98" y="102" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" font-family="sans-serif">+</text>
-        <text x="146" y="102" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" font-family="sans-serif">!</text>
-        
+      <svg viewBox="0 0 300 317" class="dotmap">
+        <g><circle cx="87.0" cy="3.0" r="2.15" fill="#E3B65A"/><circle cx="93.0" cy="3.0" r="2.15" fill="#E3B65A"/><circle cx="99.0" cy="3.0" r="2.15" fill="#E3B65A"/><circle cx="105.0" cy="3.0" r="2.15" fill="#E3B65A"/><circle cx="111.0" cy="3.0" r="2.15" fill="#E3B65A"/><circle cx="117.0" cy="3.0" r="2.15" fill="#E3B65A"/><circle cx="123.0" cy="3.0" r="2.15" fill="#E3B65A"/><circle cx="129.0" cy="3.0" r="2.15" fill="#E3B65A"/><circle cx="135.0" cy="3.0" r="2.15" fill="#E3B65A"/><circle cx="141.0" cy="3.0" r="2.15" fill="#E3B65A"/><circle cx="147.0" cy="3.0" r="2.15" fill="#E3B65A"/><circle cx="153.0" cy="3.0" r="2.15" fill="#C9A3A0"/><circle cx="159.0" cy="3.0" r="2.15" fill="#8E7FD1"/><circle cx="165.0" cy="3.0" r="2.15" fill="#8E7FD1"/><circle cx="171.0" cy="3.0" r="2.15" fill="#8E7FD1"/><circle cx="78.0" cy="9.0" r="2.15" fill="#E3B65A"/><circle cx="84.0" cy="9.0" r="2.15" fill="#E3B65A"/><circle cx="90.0" cy="9.0" r="2.15" fill="#E3B65A"/><circle cx="96.0" cy="9.0" r="2.15" fill="#E3B65A"/><circle cx="102.0" cy="9.0" r="2.15" fill="#E3B65A"/><circle cx="108.0" cy="9.0" r="2.15" fill="#E3B65A"/><circle cx="114.0" cy="9.0" r="2.15" fill="#E3B65A"/><circle cx="120.0" cy="9.0" r="2.15" fill="#E3B65A"/><circle cx="126.0" cy="9.0" r="2.15" fill="#E3B65A"/><circle cx="132.0" cy="9.0" r="2.15" fill="#E3B65A"/><circle cx="138.0" cy="9.0" r="2.15" fill="#E3B65A"/><circle cx="144.0" cy="9.0" r="2.15" fill="#E3B65A"/><circle cx="150.0" cy="9.0" r="2.15" fill="#C9A3A0"/><circle cx="156.0" cy="9.0" r="2.15" fill="#8E7FD1"/><circle cx="162.0" cy="9.0" r="2.15" fill="#8E7FD1"/><circle cx="75.0" cy="15.0" r="2.15" fill="#E3B65A"/><circle cx="81.0" cy="15.0" r="2.15" fill="#E3B65A"/><circle cx="87.0" cy="15.0" r="2.15" fill="#E3B65A"/><circle cx="99.0" cy="15.0" r="2.15" fill="#E3B65A"/><circle cx="105.0" cy="15.0" r="2.15" fill="#E3B65A"/><circle cx="111.0" cy="15.0" r="2.15" fill="#E3B65A"/><circle cx="117.0" cy="15.0" r="2.15" fill="#E3B65A"/><circle cx="123.0" cy="15.0" r="2.15" fill="#E3B65A"/><circle cx="129.0" cy="15.0" r="2.15" fill="#E3B65A"/><circle cx="135.0" cy="15.0" r="2.15" fill="#E3B65A"/><circle cx="141.0" cy="15.0" r="2.15" fill="#E3B65A"/><circle cx="147.0" cy="15.0" r="2.15" fill="#C9A3A0"/><circle cx="153.0" cy="15.0" r="2.15" fill="#8E7FD1"/><circle cx="159.0" cy="15.0" r="2.15" fill="#8E7FD1"/><circle cx="183.0" cy="15.0" r="2.15" fill="#8E7FD1"/><circle cx="108.0" cy="21.0" r="2.15" fill="#E3B65A"/><circle cx="114.0" cy="21.0" r="2.15" fill="#E3B65A"/><circle cx="120.0" cy="21.0" r="2.15" fill="#E3B65A"/><circle cx="126.0" cy="21.0" r="2.15" fill="#E3B65A"/><circle cx="132.0" cy="21.0" r="2.15" fill="#E3B65A"/><circle cx="138.0" cy="21.0" r="2.15" fill="#E3B65A"/><circle cx="144.0" cy="21.0" r="2.15" fill="#E3B65A"/><circle cx="150.0" cy="21.0" r="2.15" fill="#C9A3A0"/><circle cx="156.0" cy="21.0" r="2.15" fill="#8E7FD1"/><circle cx="186.0" cy="21.0" r="2.15" fill="#8E7FD1"/><circle cx="192.0" cy="21.0" r="2.15" fill="#8E7FD1"/><circle cx="198.0" cy="21.0" r="2.15" fill="#8E7FD1"/><circle cx="105.0" cy="27.0" r="2.15" fill="#E3B65A"/><circle cx="111.0" cy="27.0" r="2.15" fill="#E3B65A"/><circle cx="117.0" cy="27.0" r="2.15" fill="#E3B65A"/><circle cx="123.0" cy="27.0" r="2.15" fill="#E3B65A"/><circle cx="129.0" cy="27.0" r="2.15" fill="#E3B65A"/><circle cx="135.0" cy="27.0" r="2.15" fill="#E3B65A"/><circle cx="141.0" cy="27.0" r="2.15" fill="#E3B65A"/><circle cx="147.0" cy="27.0" r="2.15" fill="#C9A3A0"/><circle cx="153.0" cy="27.0" r="2.15" fill="#C9A3A0"/><circle cx="159.0" cy="27.0" r="2.15" fill="#8E7FD1"/><circle cx="165.0" cy="27.0" r="2.15" fill="#8E7FD1"/><circle cx="171.0" cy="27.0" r="2.15" fill="#8E7FD1"/><circle cx="183.0" cy="27.0" r="2.15" fill="#8E7FD1"/><circle cx="189.0" cy="27.0" r="2.15" fill="#8E7FD1"/><circle cx="195.0" cy="27.0" r="2.15" fill="#8E7FD1"/><circle cx="201.0" cy="27.0" r="2.15" fill="#8E7FD1"/><circle cx="207.0" cy="27.0" r="2.15" fill="#8E7FD1"/><circle cx="108.0" cy="33.0" r="2.15" fill="#E3B65A"/><circle cx="114.0" cy="33.0" r="2.15" fill="#E3B65A"/><circle cx="120.0" cy="33.0" r="2.15" fill="#E3B65A"/><circle cx="126.0" cy="33.0" r="2.15" fill="#E3B65A"/><circle cx="132.0" cy="33.0" r="2.15" fill="#E3B65A"/><circle cx="138.0" cy="33.0" r="2.15" fill="#E3B65A"/><circle cx="144.0" cy="33.0" r="2.15" fill="#E3B65A"/><circle cx="150.0" cy="33.0" r="2.15" fill="#C9A3A0"/><circle cx="156.0" cy="33.0" r="2.15" fill="#8E7FD1"/><circle cx="162.0" cy="33.0" r="2.15" fill="#8E7FD1"/><circle cx="168.0" cy="33.0" r="2.15" fill="#8E7FD1"/><circle cx="174.0" cy="33.0" r="2.15" fill="#8E7FD1"/><circle cx="186.0" cy="33.0" r="2.15" fill="#8E7FD1"/><circle cx="192.0" cy="33.0" r="2.15" fill="#8E7FD1"/><circle cx="198.0" cy="33.0" r="2.15" fill="#8E7FD1"/><circle cx="204.0" cy="33.0" r="2.15" fill="#8E7FD1"/><circle cx="210.0" cy="33.0" r="2.15" fill="#8E7FD1"/><circle cx="216.0" cy="33.0" r="2.15" fill="#8E7FD1"/><circle cx="105.0" cy="39.0" r="2.15" fill="#E3B65A"/><circle cx="111.0" cy="39.0" r="2.15" fill="#E3B65A"/><circle cx="117.0" cy="39.0" r="2.15" fill="#E3B65A"/><circle cx="123.0" cy="39.0" r="2.15" fill="#E3B65A"/><circle cx="129.0" cy="39.0" r="2.15" fill="#E3B65A"/><circle cx="135.0" cy="39.0" r="2.15" fill="#E3B65A"/><circle cx="141.0" cy="39.0" r="2.15" fill="#E3B65A"/><circle cx="147.0" cy="39.0" r="2.15" fill="#C9A3A0"/><circle cx="153.0" cy="39.0" r="2.15" fill="#C9A3A0"/><circle cx="159.0" cy="39.0" r="2.15" fill="#8E7FD1"/><circle cx="165.0" cy="39.0" r="2.15" fill="#8E7FD1"/><circle cx="171.0" cy="39.0" r="2.15" fill="#8E7FD1"/><circle cx="177.0" cy="39.0" r="2.15" fill="#8E7FD1"/><circle cx="183.0" cy="39.0" r="2.15" fill="#8E7FD1"/><circle cx="189.0" cy="39.0" r="2.15" fill="#8E7FD1"/><circle cx="195.0" cy="39.0" r="2.15" fill="#8E7FD1"/><circle cx="201.0" cy="39.0" r="2.15" fill="#8E7FD1"/><circle cx="207.0" cy="39.0" r="2.15" fill="#8E7FD1"/><circle cx="213.0" cy="39.0" r="2.15" fill="#8E7FD1"/><circle cx="219.0" cy="39.0" r="2.15" fill="#8E7FD1"/><circle cx="114.0" cy="45.0" r="2.15" fill="#E3B65A"/><circle cx="120.0" cy="45.0" r="2.15" fill="#E3B65A"/><circle cx="126.0" cy="45.0" r="2.15" fill="#E3B65A"/><circle cx="132.0" cy="45.0" r="2.15" fill="#E3B65A"/><circle cx="138.0" cy="45.0" r="2.15" fill="#E3B65A"/><circle cx="144.0" cy="45.0" r="2.15" fill="#E3B65A"/><circle cx="150.0" cy="45.0" r="2.15" fill="#C9A3A0"/><circle cx="156.0" cy="45.0" r="2.15" fill="#8E7FD1"/><circle cx="162.0" cy="45.0" r="2.15" fill="#8E7FD1"/><circle cx="168.0" cy="45.0" r="2.15" fill="#8E7FD1"/><circle cx="174.0" cy="45.0" r="2.15" fill="#8E7FD1"/><circle cx="180.0" cy="45.0" r="2.15" fill="#8E7FD1"/><circle cx="186.0" cy="45.0" r="2.15" fill="#8E7FD1"/><circle cx="192.0" cy="45.0" r="2.15" fill="#8E7FD1"/><circle cx="198.0" cy="45.0" r="2.15" fill="#8E7FD1"/><circle cx="204.0" cy="45.0" r="2.15" fill="#8E7FD1"/><circle cx="222.0" cy="45.0" r="2.15" fill="#8E7FD1"/><circle cx="105.0" cy="51.0" r="2.15" fill="#E3B65A"/><circle cx="111.0" cy="51.0" r="2.15" fill="#E3B65A"/><circle cx="117.0" cy="51.0" r="2.15" fill="#E3B65A"/><circle cx="123.0" cy="51.0" r="2.15" fill="#E3B65A"/><circle cx="129.0" cy="51.0" r="2.15" fill="#E3B65A"/><circle cx="135.0" cy="51.0" r="2.15" fill="#E3B65A"/><circle cx="141.0" cy="51.0" r="2.15" fill="#E3B65A"/><circle cx="147.0" cy="51.0" r="2.15" fill="#C9A3A0"/><circle cx="153.0" cy="51.0" r="2.15" fill="#C9A3A0"/><circle cx="159.0" cy="51.0" r="2.15" fill="#8E7FD1"/><circle cx="165.0" cy="51.0" r="2.15" fill="#8E7FD1"/><circle cx="171.0" cy="51.0" r="2.15" fill="#8E7FD1"/><circle cx="177.0" cy="51.0" r="2.15" fill="#8E7FD1"/><circle cx="183.0" cy="51.0" r="2.15" fill="#8E7FD1"/><circle cx="189.0" cy="51.0" r="2.15" fill="#8E7FD1"/><circle cx="195.0" cy="51.0" r="2.15" fill="#8E7FD1"/><circle cx="201.0" cy="51.0" r="2.15" fill="#8E7FD1"/><circle cx="207.0" cy="51.0" r="2.15" fill="#8E7FD1"/><circle cx="102.0" cy="57.0" r="2.15" fill="#E3B65A"/><circle cx="108.0" cy="57.0" r="2.15" fill="#E3B65A"/><circle cx="114.0" cy="57.0" r="2.15" fill="#E3B65A"/><circle cx="120.0" cy="57.0" r="2.15" fill="#E3B65A"/><circle cx="126.0" cy="57.0" r="2.15" fill="#E3B65A"/><circle cx="132.0" cy="57.0" r="2.15" fill="#E3B65A"/><circle cx="138.0" cy="57.0" r="2.15" fill="#E3B65A"/><circle cx="144.0" cy="57.0" r="2.15" fill="#E3B65A"/><circle cx="150.0" cy="57.0" r="2.15" fill="#C9A3A0"/><circle cx="156.0" cy="57.0" r="2.15" fill="#8E7FD1"/><circle cx="162.0" cy="57.0" r="2.15" fill="#8E7FD1"/><circle cx="168.0" cy="57.0" r="2.15" fill="#8E7FD1"/><circle cx="174.0" cy="57.0" r="2.15" fill="#8E7FD1"/><circle cx="180.0" cy="57.0" r="2.15" fill="#8E7FD1"/><circle cx="186.0" cy="57.0" r="2.15" fill="#8E7FD1"/><circle cx="192.0" cy="57.0" r="2.15" fill="#8E7FD1"/><circle cx="198.0" cy="57.0" r="2.15" fill="#8E7FD1"/><circle cx="99.0" cy="63.0" r="2.15" fill="#E3B65A"/><circle cx="105.0" cy="63.0" r="2.15" fill="#E3B65A"/><circle cx="111.0" cy="63.0" r="2.15" fill="#E3B65A"/><circle cx="117.0" cy="63.0" r="2.15" fill="#E3B65A"/><circle cx="123.0" cy="63.0" r="2.15" fill="#E3B65A"/><circle cx="129.0" cy="63.0" r="2.15" fill="#E3B65A"/><circle cx="135.0" cy="63.0" r="2.15" fill="#E3B65A"/><circle cx="141.0" cy="63.0" r="2.15" fill="#E3B65A"/><circle cx="147.0" cy="63.0" r="2.15" fill="#C9A3A0"/><circle cx="153.0" cy="63.0" r="2.15" fill="#C9A3A0"/><circle cx="159.0" cy="63.0" r="2.15" fill="#8E7FD1"/><circle cx="165.0" cy="63.0" r="2.15" fill="#8E7FD1"/><circle cx="171.0" cy="63.0" r="2.15" fill="#8E7FD1"/><circle cx="177.0" cy="63.0" r="2.15" fill="#8E7FD1"/><circle cx="183.0" cy="63.0" r="2.15" fill="#8E7FD1"/><circle cx="189.0" cy="63.0" r="2.15" fill="#8E7FD1"/><circle cx="195.0" cy="63.0" r="2.15" fill="#8E7FD1"/><circle cx="96.0" cy="69.0" r="2.15" fill="#E3B65A"/><circle cx="102.0" cy="69.0" r="2.15" fill="#E3B65A"/><circle cx="108.0" cy="69.0" r="2.15" fill="#E3B65A"/><circle cx="114.0" cy="69.0" r="2.15" fill="#E3B65A"/><circle cx="120.0" cy="69.0" r="2.15" fill="#E3B65A"/><circle cx="126.0" cy="69.0" r="2.15" fill="#E3B65A"/><circle cx="132.0" cy="69.0" r="2.15" fill="#E3B65A"/><circle cx="138.0" cy="69.0" r="2.15" fill="#E3B65A"/><circle cx="144.0" cy="69.0" r="2.15" fill="#E3B65A"/><circle cx="150.0" cy="69.0" r="2.15" fill="#C9A3A0"/><circle cx="156.0" cy="69.0" r="2.15" fill="#8E7FD1"/><circle cx="162.0" cy="69.0" r="2.15" fill="#8E7FD1"/><circle cx="168.0" cy="69.0" r="2.15" fill="#8E7FD1"/><circle cx="174.0" cy="69.0" r="2.15" fill="#8E7FD1"/><circle cx="180.0" cy="69.0" r="2.15" fill="#8E7FD1"/><circle cx="186.0" cy="69.0" r="2.15" fill="#8E7FD1"/><circle cx="99.0" cy="75.0" r="2.15" fill="#E3B65A"/><circle cx="105.0" cy="75.0" r="2.15" fill="#E3B65A"/><circle cx="111.0" cy="75.0" r="2.15" fill="#E3B65A"/><circle cx="117.0" cy="75.0" r="2.15" fill="#E3B65A"/><circle cx="123.0" cy="75.0" r="2.15" fill="#E3B65A"/><circle cx="129.0" cy="75.0" r="2.15" fill="#E3B65A"/><circle cx="135.0" cy="75.0" r="2.15" fill="#E3B65A"/><circle cx="141.0" cy="75.0" r="2.15" fill="#E3B65A"/><circle cx="147.0" cy="75.0" r="2.15" fill="#C9A3A0"/><circle cx="153.0" cy="75.0" r="2.15" fill="#C9A3A0"/><circle cx="159.0" cy="75.0" r="2.15" fill="#8E7FD1"/><circle cx="165.0" cy="75.0" r="2.15" fill="#8E7FD1"/><circle cx="171.0" cy="75.0" r="2.15" fill="#8E7FD1"/><circle cx="177.0" cy="75.0" r="2.15" fill="#8E7FD1"/><circle cx="183.0" cy="75.0" r="2.15" fill="#8E7FD1"/><circle cx="189.0" cy="75.0" r="2.15" fill="#8E7FD1"/><circle cx="102.0" cy="81.0" r="2.15" fill="#E3B65A"/><circle cx="108.0" cy="81.0" r="2.15" fill="#E3B65A"/><circle cx="114.0" cy="81.0" r="2.15" fill="#E3B65A"/><circle cx="120.0" cy="81.0" r="2.15" fill="#E3B65A"/><circle cx="126.0" cy="81.0" r="2.15" fill="#E3B65A"/><circle cx="132.0" cy="81.0" r="2.15" fill="#E3B65A"/><circle cx="138.0" cy="81.0" r="2.15" fill="#E3B65A"/><circle cx="144.0" cy="81.0" r="2.15" fill="#E3B65A"/><circle cx="150.0" cy="81.0" r="2.15" fill="#C9A3A0"/><circle cx="156.0" cy="81.0" r="2.15" fill="#8E7FD1"/><circle cx="162.0" cy="81.0" r="2.15" fill="#8E7FD1"/><circle cx="168.0" cy="81.0" r="2.15" fill="#8E7FD1"/><circle cx="174.0" cy="81.0" r="2.15" fill="#8E7FD1"/><circle cx="180.0" cy="81.0" r="2.15" fill="#8E7FD1"/><circle cx="186.0" cy="81.0" r="2.15" fill="#8E7FD1"/><circle cx="105.0" cy="87.0" r="2.15" fill="#E3B65A"/><circle cx="111.0" cy="87.0" r="2.15" fill="#E3B65A"/><circle cx="117.0" cy="87.0" r="2.15" fill="#E3B65A"/><circle cx="123.0" cy="87.0" r="2.15" fill="#E3B65A"/><circle cx="129.0" cy="87.0" r="2.15" fill="#E3B65A"/><circle cx="135.0" cy="87.0" r="2.15" fill="#E3B65A"/><circle cx="141.0" cy="87.0" r="2.15" fill="#E3B65A"/><circle cx="147.0" cy="87.0" r="2.15" fill="#C9A3A0"/><circle cx="153.0" cy="87.0" r="2.15" fill="#C9A3A0"/><circle cx="159.0" cy="87.0" r="2.15" fill="#8E7FD1"/><circle cx="165.0" cy="87.0" r="2.15" fill="#8E7FD1"/><circle cx="171.0" cy="87.0" r="2.15" fill="#8E7FD1"/><circle cx="177.0" cy="87.0" r="2.15" fill="#8E7FD1"/><circle cx="114.0" cy="93.0" r="2.15" fill="#E3B65A"/><circle cx="120.0" cy="93.0" r="2.15" fill="#E3B65A"/><circle cx="126.0" cy="93.0" r="2.15" fill="#E3B65A"/><circle cx="132.0" cy="93.0" r="2.15" fill="#E3B65A"/><circle cx="138.0" cy="93.0" r="2.15" fill="#E3B65A"/><circle cx="144.0" cy="93.0" r="2.15" fill="#E3B65A"/><circle cx="150.0" cy="93.0" r="2.15" fill="#C9A3A0"/><circle cx="156.0" cy="93.0" r="2.15" fill="#8E7FD1"/><circle cx="162.0" cy="93.0" r="2.15" fill="#8E7FD1"/><circle cx="180.0" cy="93.0" r="2.15" fill="#8E7FD1"/><circle cx="105.0" cy="99.0" r="2.15" fill="#E3B65A"/><circle cx="117.0" cy="99.0" r="2.15" fill="#E3B65A"/><circle cx="123.0" cy="99.0" r="2.15" fill="#E3B65A"/><circle cx="129.0" cy="99.0" r="2.15" fill="#E3B65A"/><circle cx="135.0" cy="99.0" r="2.15" fill="#E3B65A"/><circle cx="141.0" cy="99.0" r="2.15" fill="#E3B65A"/><circle cx="120.0" cy="105.0" r="2.15" fill="#E3B65A"/><circle cx="126.0" cy="105.0" r="2.15" fill="#E3B65A"/><circle cx="132.0" cy="105.0" r="2.15" fill="#E3B65A"/><circle cx="138.0" cy="105.0" r="2.15" fill="#E3B65A"/><circle cx="123.0" cy="111.0" r="2.15" fill="#E3B65A"/><circle cx="129.0" cy="111.0" r="2.15" fill="#E3B65A"/><circle cx="135.0" cy="111.0" r="2.15" fill="#E3B65A"/><circle cx="141.0" cy="111.0" r="2.15" fill="#E3B65A"/><circle cx="177.0" cy="111.0" r="2.15" fill="#8E7FD1"/><circle cx="183.0" cy="111.0" r="2.15" fill="#8E7FD1"/><circle cx="126.0" cy="117.0" r="2.15" fill="#E3B65A"/><circle cx="132.0" cy="117.0" r="2.15" fill="#E3B65A"/><circle cx="138.0" cy="117.0" r="2.15" fill="#E3B65A"/><circle cx="162.0" cy="117.0" r="2.15" fill="#C9A3A0"/><circle cx="192.0" cy="117.0" r="2.15" fill="#8E7FD1"/><circle cx="129.0" cy="123.0" r="2.15" fill="#E3B65A"/><circle cx="135.0" cy="123.0" r="2.15" fill="#E3B65A"/><circle cx="141.0" cy="123.0" r="2.15" fill="#E3B65A"/><circle cx="147.0" cy="123.0" r="2.15" fill="#E3B65A"/><circle cx="153.0" cy="123.0" r="2.15" fill="#E3B65A"/><circle cx="159.0" cy="123.0" r="2.15" fill="#C9A3A0"/><circle cx="144.0" cy="129.0" r="2.15" fill="#E3B65A"/><circle cx="156.0" cy="129.0" r="2.15" fill="#E3B65A"/><circle cx="162.0" cy="129.0" r="2.15" fill="#C9A3A0"/><circle cx="168.0" cy="129.0" r="2.15" fill="#C9A3A0"/><circle cx="174.0" cy="129.0" r="2.15" fill="#8E7FD1"/><circle cx="165.0" cy="135.0" r="2.15" fill="#E3B65A"/><circle cx="171.0" cy="135.0" r="2.15" fill="#C9A3A0"/><circle cx="174.0" cy="141.0" r="2.15" fill="#E3B65A"/><circle cx="198.0" cy="141.0" r="2.15" fill="#8E7FD1"/><circle cx="204.0" cy="141.0" r="2.15" fill="#8E7FD1"/><circle cx="210.0" cy="141.0" r="2.15" fill="#8E7FD1"/><circle cx="177.0" cy="147.0" r="2.15" fill="#E3B65A"/><circle cx="183.0" cy="147.0" r="2.15" fill="#E3B65A"/><circle cx="189.0" cy="147.0" r="2.15" fill="#C9A3A0"/><circle cx="195.0" cy="147.0" r="2.15" fill="#C9A3A0"/><circle cx="201.0" cy="147.0" r="2.15" fill="#8E7FD1"/><circle cx="207.0" cy="147.0" r="2.15" fill="#8E7FD1"/><circle cx="213.0" cy="147.0" r="2.15" fill="#8E7FD1"/><circle cx="219.0" cy="147.0" r="2.15" fill="#8E7FD1"/><circle cx="225.0" cy="147.0" r="2.15" fill="#8E7FD1"/><circle cx="231.0" cy="147.0" r="2.15" fill="#8E7FD1"/><circle cx="192.0" cy="153.0" r="2.15" fill="#E3B65A"/><circle cx="198.0" cy="153.0" r="2.15" fill="#C9A3A0"/><circle cx="204.0" cy="153.0" r="2.15" fill="#C9A3A0"/><circle cx="210.0" cy="153.0" r="2.15" fill="#8E7FD1"/><circle cx="216.0" cy="153.0" r="2.15" fill="#8E7FD1"/><circle cx="222.0" cy="153.0" r="2.15" fill="#8E7FD1"/><circle cx="228.0" cy="153.0" r="2.15" fill="#8E7FD1"/><circle cx="234.0" cy="153.0" r="2.15" fill="#8E7FD1"/><circle cx="240.0" cy="153.0" r="2.15" fill="#8E7FD1"/><circle cx="195.0" cy="159.0" r="2.15" fill="#E3B65A"/><circle cx="201.0" cy="159.0" r="2.15" fill="#E3B65A"/><circle cx="207.0" cy="159.0" r="2.15" fill="#C9A3A0"/><circle cx="213.0" cy="159.0" r="2.15" fill="#C9A3A0"/><circle cx="219.0" cy="159.0" r="2.15" fill="#C9A3A0"/><circle cx="225.0" cy="159.0" r="2.15" fill="#8E7FD1"/><circle cx="231.0" cy="159.0" r="2.15" fill="#8E7FD1"/><circle cx="237.0" cy="159.0" r="2.15" fill="#8E7FD1"/><circle cx="243.0" cy="159.0" r="2.15" fill="#8E7FD1"/><circle cx="249.0" cy="159.0" r="2.15" fill="#8E7FD1"/><circle cx="255.0" cy="159.0" r="2.15" fill="#8E7FD1"/><circle cx="192.0" cy="165.0" r="2.15" fill="#E3B65A"/><circle cx="198.0" cy="165.0" r="2.15" fill="#E3B65A"/><circle cx="204.0" cy="165.0" r="2.15" fill="#E3B65A"/><circle cx="210.0" cy="165.0" r="2.15" fill="#E3B65A"/><circle cx="216.0" cy="165.0" r="2.15" fill="#E3B65A"/><circle cx="222.0" cy="165.0" r="2.15" fill="#C9A3A0"/><circle cx="228.0" cy="165.0" r="2.15" fill="#C9A3A0"/><circle cx="234.0" cy="165.0" r="2.15" fill="#8E7FD1"/><circle cx="240.0" cy="165.0" r="2.15" fill="#8E7FD1"/><circle cx="246.0" cy="165.0" r="2.15" fill="#8E7FD1"/><circle cx="252.0" cy="165.0" r="2.15" fill="#8E7FD1"/><circle cx="258.0" cy="165.0" r="2.15" fill="#8E7FD1"/><circle cx="189.0" cy="171.0" r="2.15" fill="#E3B65A"/><circle cx="195.0" cy="171.0" r="2.15" fill="#E3B65A"/><circle cx="201.0" cy="171.0" r="2.15" fill="#E3B65A"/><circle cx="207.0" cy="171.0" r="2.15" fill="#E3B65A"/><circle cx="213.0" cy="171.0" r="2.15" fill="#E3B65A"/><circle cx="219.0" cy="171.0" r="2.15" fill="#E3B65A"/><circle cx="225.0" cy="171.0" r="2.15" fill="#E3B65A"/><circle cx="231.0" cy="171.0" r="2.15" fill="#C9A3A0"/><circle cx="237.0" cy="171.0" r="2.15" fill="#C9A3A0"/><circle cx="243.0" cy="171.0" r="2.15" fill="#8E7FD1"/><circle cx="249.0" cy="171.0" r="2.15" fill="#8E7FD1"/><circle cx="255.0" cy="171.0" r="2.15" fill="#8E7FD1"/><circle cx="261.0" cy="171.0" r="2.15" fill="#8E7FD1"/><circle cx="186.0" cy="177.0" r="2.15" fill="#E3B65A"/><circle cx="192.0" cy="177.0" r="2.15" fill="#E3B65A"/><circle cx="198.0" cy="177.0" r="2.15" fill="#E3B65A"/><circle cx="204.0" cy="177.0" r="2.15" fill="#E3B65A"/><circle cx="210.0" cy="177.0" r="2.15" fill="#E3B65A"/><circle cx="216.0" cy="177.0" r="2.15" fill="#E3B65A"/><circle cx="222.0" cy="177.0" r="2.15" fill="#E3B65A"/><circle cx="228.0" cy="177.0" r="2.15" fill="#C9A3A0"/><circle cx="234.0" cy="177.0" r="2.15" fill="#C9A3A0"/><circle cx="240.0" cy="177.0" r="2.15" fill="#C9A3A0"/><circle cx="246.0" cy="177.0" r="2.15" fill="#8E7FD1"/><circle cx="252.0" cy="177.0" r="2.15" fill="#8E7FD1"/><circle cx="258.0" cy="177.0" r="2.15" fill="#8E7FD1"/><circle cx="264.0" cy="177.0" r="2.15" fill="#8E7FD1"/><circle cx="270.0" cy="177.0" r="2.15" fill="#8E7FD1"/><circle cx="276.0" cy="177.0" r="2.15" fill="#8E7FD1"/><circle cx="282.0" cy="177.0" r="2.15" fill="#8E7FD1"/><circle cx="183.0" cy="183.0" r="2.15" fill="#E3B65A"/><circle cx="189.0" cy="183.0" r="2.15" fill="#E3B65A"/><circle cx="195.0" cy="183.0" r="2.15" fill="#E3B65A"/><circle cx="201.0" cy="183.0" r="2.15" fill="#E3B65A"/><circle cx="207.0" cy="183.0" r="2.15" fill="#E3B65A"/><circle cx="213.0" cy="183.0" r="2.15" fill="#E3B65A"/><circle cx="219.0" cy="183.0" r="2.15" fill="#E3B65A"/><circle cx="225.0" cy="183.0" r="2.15" fill="#E3B65A"/><circle cx="231.0" cy="183.0" r="2.15" fill="#C9A3A0"/><circle cx="237.0" cy="183.0" r="2.15" fill="#C9A3A0"/><circle cx="243.0" cy="183.0" r="2.15" fill="#8E7FD1"/><circle cx="249.0" cy="183.0" r="2.15" fill="#8E7FD1"/><circle cx="255.0" cy="183.0" r="2.15" fill="#8E7FD1"/><circle cx="261.0" cy="183.0" r="2.15" fill="#8E7FD1"/><circle cx="267.0" cy="183.0" r="2.15" fill="#8E7FD1"/><circle cx="273.0" cy="183.0" r="2.15" fill="#8E7FD1"/><circle cx="279.0" cy="183.0" r="2.15" fill="#8E7FD1"/><circle cx="285.0" cy="183.0" r="2.15" fill="#8E7FD1"/><circle cx="291.0" cy="183.0" r="2.15" fill="#8E7FD1"/><circle cx="297.0" cy="183.0" r="2.15" fill="#8E7FD1"/><circle cx="186.0" cy="189.0" r="2.15" fill="#E3B65A"/><circle cx="192.0" cy="189.0" r="2.15" fill="#E3B65A"/><circle cx="198.0" cy="189.0" r="2.15" fill="#E3B65A"/><circle cx="204.0" cy="189.0" r="2.15" fill="#E3B65A"/><circle cx="210.0" cy="189.0" r="2.15" fill="#E3B65A"/><circle cx="216.0" cy="189.0" r="2.15" fill="#E3B65A"/><circle cx="222.0" cy="189.0" r="2.15" fill="#E3B65A"/><circle cx="228.0" cy="189.0" r="2.15" fill="#E3B65A"/><circle cx="234.0" cy="189.0" r="2.15" fill="#C9A3A0"/><circle cx="240.0" cy="189.0" r="2.15" fill="#C9A3A0"/><circle cx="246.0" cy="189.0" r="2.15" fill="#8E7FD1"/><circle cx="252.0" cy="189.0" r="2.15" fill="#8E7FD1"/><circle cx="258.0" cy="189.0" r="2.15" fill="#8E7FD1"/><circle cx="264.0" cy="189.0" r="2.15" fill="#8E7FD1"/><circle cx="270.0" cy="189.0" r="2.15" fill="#8E7FD1"/><circle cx="276.0" cy="189.0" r="2.15" fill="#8E7FD1"/><circle cx="282.0" cy="189.0" r="2.15" fill="#8E7FD1"/><circle cx="288.0" cy="189.0" r="2.15" fill="#8E7FD1"/><circle cx="294.0" cy="189.0" r="2.15" fill="#8E7FD1"/><circle cx="195.0" cy="195.0" r="2.15" fill="#E3B65A"/><circle cx="201.0" cy="195.0" r="2.15" fill="#E3B65A"/><circle cx="207.0" cy="195.0" r="2.15" fill="#E3B65A"/><circle cx="213.0" cy="195.0" r="2.15" fill="#E3B65A"/><circle cx="219.0" cy="195.0" r="2.15" fill="#E3B65A"/><circle cx="225.0" cy="195.0" r="2.15" fill="#E3B65A"/><circle cx="231.0" cy="195.0" r="2.15" fill="#E3B65A"/><circle cx="237.0" cy="195.0" r="2.15" fill="#C9A3A0"/><circle cx="243.0" cy="195.0" r="2.15" fill="#C9A3A0"/><circle cx="249.0" cy="195.0" r="2.15" fill="#8E7FD1"/><circle cx="255.0" cy="195.0" r="2.15" fill="#8E7FD1"/><circle cx="261.0" cy="195.0" r="2.15" fill="#8E7FD1"/><circle cx="267.0" cy="195.0" r="2.15" fill="#8E7FD1"/><circle cx="273.0" cy="195.0" r="2.15" fill="#8E7FD1"/><circle cx="279.0" cy="195.0" r="2.15" fill="#8E7FD1"/><circle cx="285.0" cy="195.0" r="2.15" fill="#8E7FD1"/><circle cx="291.0" cy="195.0" r="2.15" fill="#8E7FD1"/><circle cx="198.0" cy="201.0" r="2.15" fill="#E3B65A"/><circle cx="204.0" cy="201.0" r="2.15" fill="#E3B65A"/><circle cx="210.0" cy="201.0" r="2.15" fill="#E3B65A"/><circle cx="216.0" cy="201.0" r="2.15" fill="#E3B65A"/><circle cx="222.0" cy="201.0" r="2.15" fill="#E3B65A"/><circle cx="228.0" cy="201.0" r="2.15" fill="#E3B65A"/><circle cx="234.0" cy="201.0" r="2.15" fill="#E3B65A"/><circle cx="240.0" cy="201.0" r="2.15" fill="#C9A3A0"/><circle cx="246.0" cy="201.0" r="2.15" fill="#C9A3A0"/><circle cx="252.0" cy="201.0" r="2.15" fill="#8E7FD1"/><circle cx="258.0" cy="201.0" r="2.15" fill="#8E7FD1"/><circle cx="264.0" cy="201.0" r="2.15" fill="#8E7FD1"/><circle cx="270.0" cy="201.0" r="2.15" fill="#8E7FD1"/><circle cx="276.0" cy="201.0" r="2.15" fill="#8E7FD1"/><circle cx="282.0" cy="201.0" r="2.15" fill="#8E7FD1"/><circle cx="288.0" cy="201.0" r="2.15" fill="#8E7FD1"/><circle cx="195.0" cy="207.0" r="2.15" fill="#E3B65A"/><circle cx="201.0" cy="207.0" r="2.15" fill="#E3B65A"/><circle cx="207.0" cy="207.0" r="2.15" fill="#E3B65A"/><circle cx="213.0" cy="207.0" r="2.15" fill="#E3B65A"/><circle cx="219.0" cy="207.0" r="2.15" fill="#E3B65A"/><circle cx="225.0" cy="207.0" r="2.15" fill="#E3B65A"/><circle cx="231.0" cy="207.0" r="2.15" fill="#E3B65A"/><circle cx="237.0" cy="207.0" r="2.15" fill="#C9A3A0"/><circle cx="243.0" cy="207.0" r="2.15" fill="#C9A3A0"/><circle cx="249.0" cy="207.0" r="2.15" fill="#8E7FD1"/><circle cx="255.0" cy="207.0" r="2.15" fill="#8E7FD1"/><circle cx="261.0" cy="207.0" r="2.15" fill="#8E7FD1"/><circle cx="267.0" cy="207.0" r="2.15" fill="#8E7FD1"/><circle cx="273.0" cy="207.0" r="2.15" fill="#8E7FD1"/><circle cx="279.0" cy="207.0" r="2.15" fill="#8E7FD1"/><circle cx="285.0" cy="207.0" r="2.15" fill="#8E7FD1"/><circle cx="204.0" cy="213.0" r="2.15" fill="#E3B65A"/><circle cx="210.0" cy="213.0" r="2.15" fill="#E3B65A"/><circle cx="216.0" cy="213.0" r="2.15" fill="#E3B65A"/><circle cx="222.0" cy="213.0" r="2.15" fill="#E3B65A"/><circle cx="228.0" cy="213.0" r="2.15" fill="#E3B65A"/><circle cx="234.0" cy="213.0" r="2.15" fill="#E3B65A"/><circle cx="240.0" cy="213.0" r="2.15" fill="#C9A3A0"/><circle cx="246.0" cy="213.0" r="2.15" fill="#C9A3A0"/><circle cx="252.0" cy="213.0" r="2.15" fill="#8E7FD1"/><circle cx="258.0" cy="213.0" r="2.15" fill="#8E7FD1"/><circle cx="264.0" cy="213.0" r="2.15" fill="#8E7FD1"/><circle cx="270.0" cy="213.0" r="2.15" fill="#8E7FD1"/><circle cx="276.0" cy="213.0" r="2.15" fill="#8E7FD1"/><circle cx="282.0" cy="213.0" r="2.15" fill="#8E7FD1"/><circle cx="213.0" cy="219.0" r="2.15" fill="#E3B65A"/><circle cx="219.0" cy="219.0" r="2.15" fill="#E3B65A"/><circle cx="225.0" cy="219.0" r="2.15" fill="#E3B65A"/><circle cx="231.0" cy="219.0" r="2.15" fill="#E3B65A"/><circle cx="237.0" cy="219.0" r="2.15" fill="#E3B65A"/><circle cx="243.0" cy="219.0" r="2.15" fill="#C9A3A0"/><circle cx="249.0" cy="219.0" r="2.15" fill="#C9A3A0"/><circle cx="255.0" cy="219.0" r="2.15" fill="#8E7FD1"/><circle cx="261.0" cy="219.0" r="2.15" fill="#8E7FD1"/><circle cx="267.0" cy="219.0" r="2.15" fill="#8E7FD1"/><circle cx="273.0" cy="219.0" r="2.15" fill="#8E7FD1"/><circle cx="279.0" cy="219.0" r="2.15" fill="#8E7FD1"/><circle cx="210.0" cy="225.0" r="2.15" fill="#E3B65A"/><circle cx="216.0" cy="225.0" r="2.15" fill="#E3B65A"/><circle cx="222.0" cy="225.0" r="2.15" fill="#E3B65A"/><circle cx="228.0" cy="225.0" r="2.15" fill="#E3B65A"/><circle cx="234.0" cy="225.0" r="2.15" fill="#E3B65A"/><circle cx="240.0" cy="225.0" r="2.15" fill="#C9A3A0"/><circle cx="246.0" cy="225.0" r="2.15" fill="#C9A3A0"/><circle cx="252.0" cy="225.0" r="2.15" fill="#8E7FD1"/><circle cx="258.0" cy="225.0" r="2.15" fill="#8E7FD1"/><circle cx="264.0" cy="225.0" r="2.15" fill="#8E7FD1"/><circle cx="270.0" cy="225.0" r="2.15" fill="#8E7FD1"/><circle cx="276.0" cy="225.0" r="2.15" fill="#8E7FD1"/><circle cx="207.0" cy="231.0" r="2.15" fill="#E3B65A"/><circle cx="213.0" cy="231.0" r="2.15" fill="#E3B65A"/><circle cx="219.0" cy="231.0" r="2.15" fill="#E3B65A"/><circle cx="225.0" cy="231.0" r="2.15" fill="#E3B65A"/><circle cx="231.0" cy="231.0" r="2.15" fill="#E3B65A"/><circle cx="237.0" cy="231.0" r="2.15" fill="#C9A3A0"/><circle cx="243.0" cy="231.0" r="2.15" fill="#C9A3A0"/><circle cx="249.0" cy="231.0" r="2.15" fill="#8E7FD1"/><circle cx="255.0" cy="231.0" r="2.15" fill="#8E7FD1"/><circle cx="261.0" cy="231.0" r="2.15" fill="#8E7FD1"/><circle cx="210.0" cy="237.0" r="2.15" fill="#E3B65A"/><circle cx="216.0" cy="237.0" r="2.15" fill="#E3B65A"/><circle cx="222.0" cy="237.0" r="2.15" fill="#E3B65A"/><circle cx="228.0" cy="237.0" r="2.15" fill="#E3B65A"/><circle cx="234.0" cy="237.0" r="2.15" fill="#C9A3A0"/><circle cx="240.0" cy="237.0" r="2.15" fill="#C9A3A0"/><circle cx="246.0" cy="237.0" r="2.15" fill="#8E7FD1"/><circle cx="252.0" cy="237.0" r="2.15" fill="#8E7FD1"/><circle cx="207.0" cy="243.0" r="2.15" fill="#E3B65A"/><circle cx="213.0" cy="243.0" r="2.15" fill="#E3B65A"/><circle cx="219.0" cy="243.0" r="2.15" fill="#E3B65A"/><circle cx="225.0" cy="243.0" r="2.15" fill="#E3B65A"/><circle cx="231.0" cy="243.0" r="2.15" fill="#C9A3A0"/><circle cx="237.0" cy="243.0" r="2.15" fill="#C9A3A0"/><circle cx="243.0" cy="243.0" r="2.15" fill="#8E7FD1"/><circle cx="249.0" cy="243.0" r="2.15" fill="#8E7FD1"/><circle cx="204.0" cy="249.0" r="2.15" fill="#E3B65A"/><circle cx="210.0" cy="249.0" r="2.15" fill="#E3B65A"/><circle cx="216.0" cy="249.0" r="2.15" fill="#E3B65A"/><circle cx="222.0" cy="249.0" r="2.15" fill="#E3B65A"/><circle cx="228.0" cy="249.0" r="2.15" fill="#C9A3A0"/><circle cx="234.0" cy="249.0" r="2.15" fill="#C9A3A0"/><circle cx="240.0" cy="249.0" r="2.15" fill="#8E7FD1"/><circle cx="246.0" cy="249.0" r="2.15" fill="#8E7FD1"/><circle cx="201.0" cy="255.0" r="2.15" fill="#E3B65A"/><circle cx="207.0" cy="255.0" r="2.15" fill="#E3B65A"/><circle cx="213.0" cy="255.0" r="2.15" fill="#E3B65A"/><circle cx="219.0" cy="255.0" r="2.15" fill="#E3B65A"/><circle cx="225.0" cy="255.0" r="2.15" fill="#C9A3A0"/><circle cx="231.0" cy="255.0" r="2.15" fill="#C9A3A0"/><circle cx="237.0" cy="255.0" r="2.15" fill="#8E7FD1"/><circle cx="198.0" cy="261.0" r="2.15" fill="#E3B65A"/><circle cx="204.0" cy="261.0" r="2.15" fill="#E3B65A"/><circle cx="210.0" cy="261.0" r="2.15" fill="#E3B65A"/><circle cx="216.0" cy="261.0" r="2.15" fill="#E3B65A"/><circle cx="222.0" cy="261.0" r="2.15" fill="#C9A3A0"/><circle cx="228.0" cy="261.0" r="2.15" fill="#8E7FD1"/><circle cx="201.0" cy="267.0" r="2.15" fill="#E3B65A"/><circle cx="207.0" cy="267.0" r="2.15" fill="#E3B65A"/><circle cx="213.0" cy="267.0" r="2.15" fill="#E3B65A"/><circle cx="219.0" cy="267.0" r="2.15" fill="#C9A3A0"/><circle cx="225.0" cy="267.0" r="2.15" fill="#8E7FD1"/><circle cx="198.0" cy="273.0" r="2.15" fill="#E3B65A"/><circle cx="204.0" cy="273.0" r="2.15" fill="#E3B65A"/><circle cx="210.0" cy="273.0" r="2.15" fill="#E3B65A"/><circle cx="216.0" cy="273.0" r="2.15" fill="#C9A3A0"/><circle cx="201.0" cy="279.0" r="2.15" fill="#E3B65A"/><circle cx="207.0" cy="279.0" r="2.15" fill="#E3B65A"/><circle cx="192.0" cy="285.0" r="2.15" fill="#E3B65A"/><circle cx="198.0" cy="285.0" r="2.15" fill="#E3B65A"/><circle cx="204.0" cy="285.0" r="2.15" fill="#E3B65A"/><circle cx="195.0" cy="291.0" r="2.15" fill="#E3B65A"/><circle cx="201.0" cy="291.0" r="2.15" fill="#E3B65A"/><circle cx="192.0" cy="297.0" r="2.15" fill="#E3B65A"/><circle cx="198.0" cy="297.0" r="2.15" fill="#E3B65A"/><circle cx="189.0" cy="303.0" r="2.15" fill="#E3B65A"/><circle cx="195.0" cy="303.0" r="2.15" fill="#E3B65A"/><circle cx="192.0" cy="309.0" r="2.15" fill="#E3B65A"/><circle cx="198.0" cy="309.0" r="2.15" fill="#C9A3A0"/></g>
+        <path d="M300 63 C 262 63, 200 71, 173 89" fill="none" stroke="#E3B65A" stroke-width="1.5" stroke-dasharray="3 4" opacity=".9"/>
+        <path d="M300 123 C 262 121, 200 107, 173 97" fill="none" stroke="#8E7FD1" stroke-width="1.5" stroke-dasharray="3 4" opacity=".9"/>
+        <g transform="translate(160.8 92.5)"><circle r="11" fill="#22324A" stroke="#fff" stroke-width="1.5"/><path d="M-2 4.5V-5l6-1.5V3" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-3.6" cy="4.6" r="1.8" fill="#fff"/><circle cx="2.4" cy="3.2" r="1.8" fill="#fff"/></g>
+        <g transform="translate(137.9 125.5)"><circle r="11" fill="#22324A" stroke="#fff" stroke-width="1.5"/><path d="M-3.5 -5v4a2 2 0 0 0 4 0v-4M-1.5 -5V6M3.5 6V-5c-2 1-2 5 0 6" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
       </svg>
+      <div class="hero-legend">
+        <span><i style="background:#E3B65A"></i>만남이 만든 새로운 문화</span>
+        <span><i style="background:#8E7FD1"></i>그 뒤에 남은 질문</span>
+      </div>
     </div>
   </div>
   <div class="mission">
@@ -278,8 +351,8 @@ table.summary th{background:var(--soft);font-size:13px;color:var(--muted)}
       <h3>활동 방법</h3>
       <ol>
         <li><b>사례 탐색</b> 세 개의 사건 파일을 읽고 질문에 답해요.</li>
-        <li><b>영향 분류</b> 영향 카드를 긍정·문제·양면으로 나눠요.</li>
-        <li><b>최종 판단</b> 근거 카드를 골라 내 생각을 써요.</li>
+        <li><b>영향 분류</b> 장소별 장면을 보고 누구에게 어떤 영향인지 판단해요.</li>
+        <li><b>최종 판단</b> 근거 장면을 골라 내 생각을 써요.</li>
         <li><b>탐구 결과</b> 보고서를 복사하거나 인쇄해 제출해요.</li>
       </ol>
     </div>
@@ -301,35 +374,36 @@ table.summary th{background:var(--soft);font-size:13px;color:var(--muted)}
 
 <!-- STEP 3 -->
 <section class="screen" id="s3" aria-labelledby="t3">
-  <div class="kicker">STEP 3 · 증거 분류</div>
-  <h2 id="t3">영향 카드를 분류하세요</h2>
-  <p class="lead">카드 아래 버튼을 누르거나 카드를 끌어서 상자에 넣으세요. 언제든 다시 옮길 수 있어요. 한 가지 정답은 없어요. 왜 그렇게 나눴는지 이유를 적어 두면 다음 단계에서 근거로 쓸 수 있어요.</p>
-  <div class="notice" style="margin-top:12px">모든 카드는 실제 특정 사건이 아니라 <b>일반적인 상황을 가정한 교육용 판단 카드</b>예요.</div>
-  <div class="zone pool" id="zone-none" data-zone="none">
-    <h3><span class="sym none">?</span>아직 분류하지 않은 카드<span class="cnt" id="cnt-none"></span></h3>
-    <div class="cards" id="cards-none"></div>
+  <div class="kicker">STEP 3 · 현장 조사</div>
+  <h2 id="t3">장소별 장면: 누구에게 어떤 영향일까?</h2>
+  <p class="lead">같은 장면도 <b>문화를 만들어 온 사람들</b>과 <b>그 문화를 즐기는 쪽</b>에게는 다르게 다가올 수 있어요. 장면마다 두 쪽에 미치는 영향을 골라 보세요. 정답은 하나가 아니에요.</p>
+  <div class="who">
+    <div class="w own"><b>원래 공동체</b><span>그 문화를 만들고 이어 온 주민·음악가·요리사</span></div>
+    <div class="w use"><b>즐기는 쪽</b><span>관광객·소비자·기업·다른 지역 사람들</span></div>
   </div>
-  <div class="sortwrap" id="zones"></div>
+  <div class="notice" style="margin-top:12px">모든 장면은 실제 경향을 바탕으로 만든 <b>교육용 장면</b>이에요. 특정 사람이나 가게의 이야기가 아니에요.</div>
+  <div class="scenes" id="scenes"></div>
   <div class="tools">
-    <button class="btn line sm" id="resetSort">분류 초기화</button>
-    <button class="btn line sm" id="toggleSummary" aria-expanded="false">내 분류 한눈에 보기</button>
+    <button class="btn line sm" id="resetSort">판단 초기화</button>
+    <button class="btn line sm" id="toggleSummary" aria-expanded="false">내 판단 한눈에 보기</button>
     <span id="sortStatus" style="font-size:14px;color:var(--muted)" aria-live="polite"></span>
   </div>
   <div id="summaryBox" hidden></div>
+  <div class="balance" id="balance"></div>
 </section>
 
 <!-- STEP 4 -->
 <section class="screen" id="s4" aria-labelledby="t4">
   <div class="kicker">STEP 4 · 최종 판단</div>
   <h2 id="t4">나의 판단을 써 보세요</h2>
-  <p class="lead">빈칸을 채우면 아래에 문장이 완성돼요. 완성된 문장은 자유롭게 고칠 수 있어요. 오른쪽에서 내 판단의 근거가 되는 카드를 골라 주세요.</p>
+  <p class="lead">빈칸을 채우면 아래에 문장이 완성돼요. 완성된 문장은 자유롭게 고칠 수 있어요. 오른쪽에서 내 판단의 근거가 되는 장면을 골라 주세요. <b>어디에서, 누구에게</b> 생긴 영향인지 드러나면 더 좋아요.</p>
   <div class="two">
     <div>
       <div class="frame">
         <p class="ln">문화 혼종성은 <em>(가치)</em></p>
         <input type="text" id="b1" placeholder="예: 재즈처럼 서로 다른 전통이 만나 새로운 예술을 낳는 계기">
         <p class="ln">라는 점에서 가치가 있다. 하지만 <em>(문제)</em></p>
-        <input type="text" id="b2" placeholder="예: 문화를 만든 사람들의 기여가 잊히는 일">
+        <input type="text" id="b2" placeholder="예: 관광지는 붐벼도 재즈를 키운 동네 주민에게는 이익이 돌아가지 않는 일">
         <p class="ln">라는 문제도 발생할 수 있다. 따라서 문화적 다양성을 존중하기 위해서는 <em>(실천)</em></p>
         <input type="text" id="b3" placeholder="예: 음식이나 음악을 즐길 때 그 역사와 만든 사람들을 함께 소개">
         <p class="ln">해야 한다.</p>
@@ -345,8 +419,8 @@ table.summary th{background:var(--soft);font-size:13px;color:var(--muted)}
     </div>
     <div>
       <div class="frame">
-        <h3 style="font-family:var(--sans);font-size:16px;margin-bottom:4px">근거 카드 고르기</h3>
-        <p style="font-size:13.5px;color:var(--muted)">내가 분류한 결과와 이유가 함께 보여요. 가치와 문제를 뒷받침할 카드를 골라 보세요.</p>
+        <h3 style="font-family:var(--sans);font-size:16px;margin-bottom:4px">근거 장면 고르기</h3>
+        <p style="font-size:13.5px;color:var(--muted)">STEP 3에서 내가 판단한 결과가 함께 보여요. 가치와 문제를 뒷받침할 장면을 골라 보세요.</p>
         <div class="evlist" id="evlist"></div>
       </div>
       <div class="frame">
@@ -385,29 +459,28 @@ table.summary th{background:var(--soft);font-size:13px;color:var(--muted)}
 /* ================= 데이터 ================= */
 const STEPS = ["미션 소개","사례 탐색","영향 분류","최종 판단","탐구 결과"];
 const CATS = {
-  pos:{ name:"긍정적 영향", sym:"+" },
-  neg:{ name:"부정적 영향 또는 문제점", short:"문제점", sym:"!" },
-  both:{ name:"양면적 영향", sym:"±" },
-  none:{ name:"미분류", sym:"?" }
+  pos:{ name:"좋은 영향", short:"좋은 영향", sym:"+" },
+  neg:{ name:"문제", short:"문제", sym:"−" },
+  both:{ name:"양면", short:"양면", sym:"±" },
+  none:{ name:"미정", short:"미정", sym:"?" }
 };
-CATS.pos.short = "긍정"; CATS.both.short = "양면"; CATS.none.short = "미분류";
+const SIDES = { own:"원래 공동체", use:"즐기는 쪽" };
 
 const V = '<span class="flag">수업 전 확인</span>';
 const CASES = [
  { id:"A", tab:"A. 뉴올리언스 재즈", title:"뉴올리언스 재즈", sub:"미국 루이지애나주 · 19세기 말~20세기 초",
-   art:"jazz", artCap:"직접 그린 도식: 여러 음악 전통이 한 소리로 모이는 모습",
+   flow:[ {o:"아프리카계 미국인",c:"af",it:[{i:"drum",l:"리듬·노래"}]},"+",{o:"새로운 음악 장르",c:"am",it:[{i:"piano",l:"블루스·래그타임"}]},"+",{o:"유럽계",c:"eu",it:[{i:"trumpet",l:"금관 악기"}]},"=",{o:"결과",c:"out",it:[{i:"music",l:"재즈"}]} ],
    history:[
-     "뉴올리언스는 카리브해와 대서양을 잇는 항구 도시로, 아프리카계 주민, 프랑스·스페인 식민 시대의 후손, 크리올 등 다양한 사람이 함께 살았어요.",
-     "노예제 시기에 아프리카계 사람들이 콩고 광장(Congo Square)에 모여 음악과 춤을 이어 갔다고 전해져요."+V,
-     "19세기 말~20세기 초, 아프리카계 미국인의 리듬과 노래 방식, 블루스와 래그타임, 교회 음악, 유럽식 브라스 밴드의 금관 악기 등이 어우러지며 재즈가 발전했어요."
+     "뉴올리언스는 카리브해와 대서양을 잇는 <b>항구 도시</b>로, 다양한 사람이 함께 살았어요.",
+     "19세기 말~20세기 초, <b>아프리카계 미국인의 리듬과 노래</b>, <b>블루스와 래그타임</b>, <b>유럽식 금관 악기</b>가 어우러져 재즈가 발전했어요."
    ],
-   pos:["서로 다른 음악 전통이 만나 새로운 예술 장르가 탄생했어요.","재즈는 이후 세계 여러 지역의 음악에 영향을 주었어요.","즉흥 연주처럼 새로운 표현 방식이 생겨났어요."],
-   neg:["재즈가 형성되던 시기 미국 남부에는 인종 분리와 차별이 있었어요.","1917년 처음 발매된 재즈 음반은 백인 연주자들로 구성된 밴드(Original Dixieland Jass Band)가 녹음했다고 알려져 있어요."+V+" 음악을 만든 사람들이 기회와 보상을 공정하게 받았는지 생각해 볼 수 있어요."],
+   pos:["서로 다른 음악 전통이 만나 새로운 장르가 탄생했어요.","세계 여러 지역의 음악에 영향을 주었어요."],
+   neg:["당시 미국 남부에는 인종 차별이 심했어요.","첫 재즈 음반(1917)은 백인 연주자 밴드가 녹음했다고 알려져 있어요."+V+" 음악을 만든 사람들은 공정하게 인정받았을까요?"],
    qs:[
      { lv:"read", type:"one", q:"재즈가 발전한 미국의 항구 도시는 어디인가요?", opts:["뉴욕","뉴올리언스","시카고","로스앤젤레스"], ans:[1],
-       ok:"맞아요. ‘역사적 배경’ 첫 문장에 나와 있어요.", hint:"‘역사적 배경’의 첫 문장을 다시 읽어 보세요." },
+       ok:"맞아요. ‘역사적 배경’ 첫 문장에 나와 있어요.", hint:"‘역사적 배경’ 첫 문장을 다시 읽어 보세요." },
      { lv:"read", type:"multi", q:"사례에 나온 재즈의 ‘재료’를 모두 고르세요.", opts:["블루스와 래그타임","유럽식 브라스 밴드의 금관 악기","아프리카계 미국인의 리듬과 노래 방식","일본의 전통 악기"], ans:[0,1,2],
-       ok:"맞아요. 여러 전통이 함께 어우러졌어요.", hint:"‘역사적 배경’ 세 번째 문장에 나온 것만 골라 보세요. 사례에 없는 것이 하나 있어요." },
+       ok:"맞아요. 여러 전통이 함께 어우러졌어요.", hint:"‘역사적 배경’ 두 번째 문장이나 위의 그림을 보세요. 사례에 없는 것이 하나 있어요." },
      { lv:"think", type:"text", q:"재즈를 ‘문화 혼종성’의 사례라고 할 수 있는 이유를 한 문장으로 써 보세요.", ph:"재즈는 ___와(과) ___이(가) 만나 만들어졌기 때문이다." },
      { lv:"deep", type:"text", q:"재즈를 즐길 때, 이 음악을 만들어 온 음악가와 공동체의 기여를 함께 기억하려면 무엇이 필요할까요?", ph:"‘고민해 볼 점’을 참고해 내 생각을 적어 보세요." }
    ],
@@ -416,15 +489,13 @@ const CASES = [
      { t:"Ted Gioia, The History of Jazz, Oxford University Press (도서)", u:"" }
    ]},
  { id:"B", tab:"B. 멕시코 음식문화", title:"멕시코 음식문화", sub:"멕시코 · 원주민 사회부터 오늘날까지",
-   art:"mexico", artCap:"직접 그린 도식: 옥수수·고추(아메리카) + 밀·가축(유럽)",
+   flow:[ {o:"원주민",c:"na",it:[{i:"plant",l:"옥수수·콩·호박"},{i:"pepper",l:"고추"}]},"+",{o:"스페인",c:"eu",it:[{i:"wheat",l:"밀"},{i:"beef",l:"돼지·소"}]},"=",{o:"결과",c:"out",it:[{i:"utensils",l:"멕시코 음식"}]} ],
    history:[
-     "아메리카 원주민은 오래전부터 옥수수, 콩, 호박, 고추 등을 길렀어요. 옥수수를 석회수에 삶아 반죽을 만드는 방법(닉스타말화)으로 토르티야를 만들었어요.",
-     "16세기 스페인의 정복과 식민 지배 이후 돼지·소·닭 같은 가축, 밀, 유제품, 양파 등이 들어와 원주민의 재료·조리법과 결합했어요.",
-     "고추와 카카오 같은 아메리카 재료에 다른 대륙에서 온 향신료가 함께 쓰이는 몰레(mole)처럼, 지역마다 다양한 요리가 발전했어요.",
-     "‘멕시코 전통 요리’는 2010년 유네스코 인류무형문화유산에 등재되었어요."+V
+     "원주민은 <b>옥수수, 콩, 호박, 고추</b>를 길렀고, 옥수수를 석회수에 삶아 반죽을 만들었어요(<b>닉스타말화</b>).",
+     "16세기 <b>스페인 식민 지배</b> 이후 돼지·소, <b>밀</b>, 유제품 등이 들어와 원주민 음식과 섞였어요."
    ],
-   pos:["서로 다른 재료와 조리법이 만나 새롭고 다양한 음식문화가 생겼어요.","음식이 지역 공동체의 정체성과 축제를 이어 주는 역할을 해요."],
-   neg:["이 만남은 식민 지배라는 대등하지 않은 관계 속에서 일어났어요. 섞임의 과정이 늘 평화로웠던 것은 아니에요.","다른 지역으로 퍼질 때 ‘멕시코 음식은 이렇다’는 단순한 이미지나 고정관념으로 소비될 수 있어요. 실제로는 지역마다 매우 다양해요."],
+   pos:["새롭고 다양한 음식문화가 생겼어요."],
+   neg:["이 만남은 <b>식민 지배</b>라는 대등하지 않은 관계 속에서 일어났어요.","다른 나라에서는 단순한 이미지(고정관념)로 소비되기도 해요. 실제로는 지역마다 매우 다양해요."],
    qs:[
      { lv:"read", type:"multi", q:"아메리카 원주민이 오래전부터 길러 온 작물로 사례에 나온 것을 모두 고르세요.", opts:["옥수수","콩","밀","고추"], ans:[0,1,3],
        ok:"맞아요. 밀은 스페인 식민 지배 이후 들어온 재료예요.", hint:"‘역사적 배경’ 첫 문장과 두 번째 문장을 비교해 보세요. 하나는 스페인이 들여온 재료예요." },
@@ -438,14 +509,14 @@ const CASES = [
      { t:"Jeffrey M. Pilcher, Planet Taco: A Global History of Mexican Food, Oxford University Press, 2012 (도서)", u:"" }
    ]},
  { id:"C", tab:"C. 미국 속 멕시코 음식", title:"멕시코 음식의 미국 내 변형과 확산", sub:"미국 남서부에서 전국으로 · 19세기~현재",
-   art:"texmex", artCap:"직접 그린 도식: 국경을 넘어 바뀌고 퍼지는 음식",
+   flow:[ {o:"텍사스",c:"na",it:[{i:"users",l:"멕시코계 주민(테하노)"}]},"→",{o:"지역 음식",c:"am",it:[{i:"home",l:"텍스멕스 요리"}]},"→",{o:"20세기 중반 이후",c:"eu",it:[{i:"store",l:"식당 체인"},{i:"truck",l:"포장 식품"}]},"→",{o:"결과",c:"out",it:[{i:"world",l:"미국 전역 확산"}]} ],
    history:[
-     "텍사스, 캘리포니아 등 미국 남서부는 1848년 미국-멕시코 전쟁이 끝나기 전까지 멕시코 영토였고, 그 뒤에도 멕시코계 주민이 계속 살아왔어요.",
-     "텍사스의 멕시코계 주민(테하노) 사이에서 지역 재료를 활용한 ‘텍스멕스(Tex-Mex)’ 요리가 발전했어요. 19세기 말 샌안토니오에서는 광장에서 칠리를 파는 여성 상인들이 유명했다고 알려져 있어요."+V,
-     "20세기 중반 이후 식당 체인, 포장 식품 등을 통해 멕시코 음식이 미국 전역에 퍼졌어요. 1962년 캘리포니아에서 시작된 타코 체인점이 대표적인 예로 자주 언급돼요."+V
+     "텍사스·캘리포니아 등은 <b>1848년까지 멕시코 영토</b>였고, 이후에도 멕시코계 주민이 살아왔어요.",
+     "텍사스의 멕시코계 주민(<b>테하노</b>) 사이에서 ‘텍스멕스’ 요리가 발전했어요.",
+     "20세기 중반 이후 식당 체인과 포장 식품으로 미국 전역에 퍼졌어요."
    ],
-   pos:["음식이 새로운 환경과 입맛에 맞게 변하면서 더 많은 사람이 즐기게 되었어요.","텍스멕스는 멕시코계 미국인이 오랜 시간 만들어 온 고유한 지역 음식문화예요. 바뀌었다고 해서 ‘가짜’나 ‘왜곡’이라고 단정할 수는 없어요.","멕시코계 요리사와 상인에게 일자리와 사업 기회가 되기도 해요."],
-   neg:["음식이 상품으로 크게 팔릴 때, 원래의 역사와 의미를 모른 채 소비될 수 있어요.","이익과 명성이 그 음식문화를 만든 공동체가 아니라 다른 곳으로 주로 돌아간다면 ‘기여의 인정’ 문제가 생길 수 있어요."],
+   pos:["더 많은 사람이 즐기게 되었어요.","텍스멕스는 멕시코계 미국인이 만든 지역 음식문화예요. 바뀌었다고 ‘가짜’는 아니에요."],
+   neg:["상품으로 팔리면서 원래의 역사와 의미가 잊힐 수 있어요.","이익과 명성이 그 음식을 만든 공동체에 돌아가지 않을 수 있어요."],
    qs:[
      { lv:"read", type:"one", q:"1848년 이전까지 텍사스·캘리포니아는 어느 나라의 영토였나요?", opts:["스페인","프랑스","멕시코","캐나다"], ans:[2],
        ok:"맞아요. 그래서 이 지역에는 멕시코계 주민이 오래전부터 살아왔어요.", hint:"‘역사적 배경’ 첫 문장을 다시 읽어 보세요." },
@@ -461,59 +532,43 @@ const CASES = [
    ]}
 ];
 
-const LENS = { mix:"문화 교류·창작", attitude:"차이를 대하는 태도", market:"상업화", credit:"기여의 인정" };
+const PIN = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+// 장소별 장면 카드 (교육용 장면). type: make = 문화가 만들어진 곳, use = 문화가 소비되는 곳
 const CARDS = [
- { id:1, t:"서로 다른 음악적 전통이 만나 새로운 음악 장르가 발전한다.", lens:["mix"], cases:"A",
-   p:{ pos:"새로운 예술과 표현이 생기는 점에 주목했어요.", neg:"만남이 차별이나 강제 속에서 일어났다면 그 과정의 고통도 보아야 해요.", both:"결과는 새로운 예술이지만, 과정은 대등하지 않았을 수 있어요." } },
- { id:2, t:"다양한 음식문화를 접하며 다른 문화에 대한 관심이 높아진다.", lens:["attitude"], cases:"B·C",
-   p:{ pos:"낯선 문화에 대한 이해와 존중의 출발점이 될 수 있어요.", neg:"관심이 맛에만 머물고 사람과 역사로 이어지지 않으면 피상적일 수 있어요.", both:"관심이 존중으로 이어질지는 태도에 달려 있어요." } },
- { id:3, t:"문화가 상품으로 인기를 얻지만, 그 문화를 발전시킨 사람들의 기여는 충분히 알려지지 않을 수 있다.", lens:["market","credit"], cases:"A·C",
-   p:{ pos:"인기 덕분에 문화가 널리 퍼지고 보존될 수 있어요.", neg:"이익과 명성이 만든 사람들에게 돌아가지 않는 불공정이 생길 수 있어요.", both:"확산과 인정 부족이 동시에 일어날 수 있어요." } },
- { id:4, t:"음식이 다른 지역의 입맛에 맞게 변형되어 더 많은 사람이 즐기게 된다.", lens:["mix","market"], cases:"C",
-   p:{ pos:"문화는 원래 변하며 살아 있어요. 텍스멕스처럼 새로운 지역 문화가 되기도 해요.", neg:"변형된 모습만 알려지면 원래 음식이 잘못 이해될 수 있어요.", both:"변형 자체는 자연스럽지만, 기원에 대한 설명이 함께하는지가 중요해요." } },
- { id:5, t:"문화의 역사적 맥락이 생략되면서 특정 문화에 대한 고정관념이 강화될 수 있다.", lens:["attitude","market"], cases:"B·C",
-   p:{ pos:"이 카드를 긍정으로 보기는 어려워요. 혹시 그렇게 봤다면 이유를 꼭 적어 보세요.", neg:"고정관념은 그 문화를 가진 사람들을 오해하고 낮춰 보게 만들 수 있어요.", both:"쉽게 알려진다는 장점 뒤에 단순화라는 대가가 있다고 볼 수도 있어요." } },
- { id:6, t:"서로 다른 문화가 만나 새로운 표현 방식과 창작 활동이 생겨난다.", lens:["mix"], cases:"A·B",
-   p:{ pos:"창의성과 다양성이 커지는 점에 주목했어요.", neg:"누구의 창작으로 기록되는지에 따라 기여가 가려질 수 있어요.", both:"창작은 늘어나지만 공정한 인정이 함께해야 해요." } },
- { id:7, t:"낯선 음식이나 음악을 ‘이상하다’며 낮춰 보는 태도는 그 문화를 가진 사람들에 대한 차별로 이어질 수 있다.", lens:["attitude"], cases:"공통",
-   p:{ pos:"이 카드는 긍정으로 보기 어려워요.", neg:"문제는 문화의 차이가 아니라 차이를 낮춰 보는 태도예요.", both:"낯섦을 느끼는 것은 자연스럽지만, 그것을 낮춰 보는 순간 문제가 돼요." } },
- { id:8, t:"문화를 만들어 온 공동체가 식당·공연·축제를 직접 운영하며 문화를 알리고 경제적 이익도 얻는다.", lens:["market","credit"], cases:"공통",
-   p:{ pos:"상업화가 공동체의 기여를 인정하고 보상하는 방법이 될 수 있어요.", neg:"관광객 입맛에 맞추느라 공동체가 원하지 않는 방식으로 바뀔 위험도 있어요.", both:"누가 주도하고 누가 이익을 얻는지가 판단의 열쇠예요." } }
+ { id:1, case:"A", place:"뉴올리언스 관광 중심가", scale:"도시", type:"use",
+   t:"관광 중심가의 공연장과 거리에서 재즈 공연이 이어지고, 세계 각지의 관광객이 이 음악을 들으러 온다.",
+   p:{ own:"음악가에게 무대와 일자리가 생겨요. 하지만 수익이 공연장 주인이나 관광업체에 더 많이 갈 수도 있어요.", use:"관광객은 재즈가 태어난 도시에서 음악을 직접 경험할 수 있어요." } },
+ { id:2, case:"A", place:"뉴올리언스 트레메 지역", scale:"동네", type:"make",
+   t:"재즈와 브라스 밴드 전통이 깊은 아프리카계 주거 지역에 관광객과 새 주민이 늘면서 집값이 오르고, 오래 살던 주민이 떠나기도 한다.",
+   p:{ own:"동네 문화가 주목받지만, 그 문화를 이어 온 주민이 정작 동네에 살기 어려워질 수 있어요.", use:"방문객과 새 주민은 개성 있는 동네 문화를 누릴 수 있어요." } },
+ { id:3, case:"A", place:"세계 여러 도시", scale:"세계", type:"use",
+   t:"세계 여러 도시의 재즈 페스티벌과 음원 사이트에서 재즈가 사랑받는다. 그러나 재즈가 어디에서 누구에 의해 시작되었는지는 잘 소개되지 않기도 한다.",
+   p:{ own:"재즈의 가치가 세계에 알려지지만, 만든 사람들의 이름과 역사가 빠질 수 있어요.", use:"세계 사람들이 새로운 음악을 즐기고 창작에 활용해요." } },
+ { id:4, case:"B", place:"멕시코 오악사카", scale:"도시", type:"make",
+   t:"몰레 같은 전통 음식으로 이름난 오악사카에 음식 관광객이 몰리며 시장과 식당이 붐빈다.",
+   p:{ own:"지역 상인의 소득이 늘고 음식에 대한 자부심이 커질 수 있어요. 관광객 입맛에 맞춰 음식이나 가격이 바뀔 수도 있어요.", use:"관광객은 멕시코 음식이 지역마다 다르다는 것을 직접 알게 돼요." } },
+ { id:5, case:"B", place:"서울의 한 멕시코 음식점", scale:"우리 동네", type:"use",
+   t:"가게가 챙 넓은 모자와 선인장 장식으로 꾸며져 있고, 메뉴판에는 ‘정통 멕시코의 매운맛’이라고만 쓰여 있다.",
+   p:{ own:"멕시코 음식이 알려지지만, 다양한 지역 음식이 ‘모자·선인장·매운맛’ 이미지로만 굳어질 수 있어요.", use:"손님은 낯선 음식을 쉽게 접할 수 있어요. 이미지 너머의 다양성은 놓칠 수 있어요." } },
+ { id:6, case:"C", place:"텍사스 샌안토니오", scale:"도시", type:"make",
+   t:"멕시코계 주민이 대대로 운영해 온 식당의 텍스멕스 요리가 도시를 대표하는 음식으로 홍보된다.",
+   p:{ own:"음식을 만들어 온 공동체가 기여를 인정받고 사업 기회도 얻어요.", use:"방문객은 지역의 역사가 담긴 음식을 맛볼 수 있어요." } },
+ { id:7, case:"C", place:"미국 전역의 식당 체인·마트", scale:"국가", type:"use",
+   t:"전국의 대형 식당 체인과 마트에서 타코·부리토가 팔린다. 메뉴와 포장에는 음식이 생겨난 지역이나 만든 사람들의 이야기가 거의 없다.",
+   p:{ own:"음식이 널리 퍼지지만 이익과 명성이 원래 공동체에 돌아가지 않을 수 있어요.", use:"누구나 쉽고 싸게 즐길 수 있게 되었어요." } }
 ];
 
-const ART = {
- jazz:`<svg viewBox="0 0 220 150" role="img" aria-label="여러 선이 모여 트럼펫으로 들어가는 도식">
-   <path d="M10 30 C70 30 80 70 120 72" stroke="#B23A48" stroke-width="5" fill="none"/>
-   <path d="M10 72 C60 72 80 72 120 74" stroke="#C9962B" stroke-width="5" fill="none"/>
-   <path d="M10 114 C70 114 80 76 120 76" stroke="#22324A" stroke-width="5" fill="none"/>
-   <text x="8" y="22" font-size="10" fill="#5A6577">아프리카계 리듬</text><text x="8" y="64" font-size="10" fill="#5A6577">블루스·래그타임</text><text x="8" y="132" font-size="10" fill="#5A6577">유럽식 금관 악기</text>
-   <rect x="118" y="68" width="48" height="12" rx="4" fill="#C9962B"/><path d="M166 74 L206 52 L206 96 Z" fill="#C9962B"/>
-   <circle cx="134" cy="62" r="4" fill="#22324A"/><circle cx="146" cy="62" r="4" fill="#22324A"/><circle cx="158" cy="62" r="4" fill="#22324A"/>
-   <text x="186" y="40" font-size="16" fill="#6A4FB3">♪</text><text x="200" y="118" font-size="14" fill="#6A4FB3">♫</text></svg>`,
- mexico:`<svg viewBox="0 0 220 150" role="img" aria-label="옥수수와 고추, 밀과 가축 기호가 토르티야로 모이는 도식">
-   <g transform="translate(22,18)"><ellipse cx="18" cy="30" rx="12" ry="26" fill="#E3B23C"/><path d="M6 30 Q-6 50 8 62 M30 30 Q42 50 28 62" stroke="#3E8E5A" stroke-width="5" fill="none"/></g>
-   <path d="M70 30 Q86 20 92 40 Q80 64 68 60 Q74 44 70 30Z" fill="#B23A48"/><path d="M76 24 l8 -8" stroke="#3E8E5A" stroke-width="3"/>
-   <text x="20" y="98" font-size="10" fill="#5A6577">아메리카 작물</text>
-   <g transform="translate(150,14)"><path d="M14 0 v64" stroke="#B7791F" stroke-width="3"/><g fill="#C9962B"><ellipse cx="8" cy="10" rx="6" ry="4"/><ellipse cx="20" cy="18" rx="6" ry="4"/><ellipse cx="8" cy="26" rx="6" ry="4"/><ellipse cx="20" cy="34" rx="6" ry="4"/></g>
-   <circle cx="48" cy="40" r="12" fill="#E8B4BC"/><circle cx="44" cy="37" r="2" fill="#22324A"/></g>
-   <text x="150" y="98" font-size="10" fill="#5A6577">유럽에서 온 밀·가축</text>
-   <ellipse cx="110" cy="128" rx="54" ry="13" fill="#E9D7A8" stroke="#C9962B" stroke-width="2"/>
-   <path d="M60 80 L100 118 M170 80 L120 118" stroke="#22324A" stroke-width="2" stroke-dasharray="4 4"/></svg>`,
- texmex:`<svg viewBox="0 0 220 150" role="img" aria-label="국경선을 넘어 타코 모양이 여러 곳으로 퍼지는 도식">
-   <path d="M0 78 H220" stroke="#5A6577" stroke-width="2" stroke-dasharray="6 5"/>
-   <text x="6" y="72" font-size="10" fill="#5A6577">미국</text><text x="6" y="94" font-size="10" fill="#5A6577">멕시코</text>
-   <path d="M88 128 a22 22 0 0 1 44 0 Z" fill="#E3B23C"/><path d="M92 124 q18 -14 36 0" stroke="#3E8E5A" stroke-width="4" fill="none"/>
-   <path d="M110 104 C110 80 70 60 50 36" stroke="#6A4FB3" stroke-width="3" fill="none"/><path d="M110 104 C110 80 150 60 176 30" stroke="#6A4FB3" stroke-width="3" fill="none"/><path d="M110 104 V40" stroke="#6A4FB3" stroke-width="3" fill="none"/>
-   <g fill="#C9962B"><path d="M38 36 a12 12 0 0 1 24 0Z"/><path d="M98 38 a12 12 0 0 1 24 0Z"/><path d="M164 30 a12 12 0 0 1 24 0Z"/></g>
-   <rect x="160" y="40" width="28" height="18" rx="3" fill="#22324A"/><text x="174" y="53" font-size="9" fill="#fff" text-anchor="middle">상품</text></svg>`
-};
+const ICONS = {"drum": "<path d=\"m2 2 8 8\" /> <path d=\"m22 2-8 8\" /> <ellipse cx=\"12\" cy=\"9\" rx=\"10\" ry=\"5\" /> <path d=\"M7 13.4v7.9\" /> <path d=\"M12 14v8\" /> <path d=\"M17 13.4v7.9\" /> <path d=\"M2 9v8a10 5 0 0 0 20 0V9\" />", "piano": "<path d=\"M18.5 8c-1.4 0-2.6-.8-3.2-2A6.87 6.87 0 0 0 2 9v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-8.5C22 9.6 20.4 8 18.5 8\" /> <path d=\"M2 14h20\" /> <path d=\"M6 14v4\" /> <path d=\"M10 14v4\" /> <path d=\"M14 14v4\" /> <path d=\"M18 14v4\" />", "music": "<path d=\"M9 18V5l12-2v13\" /> <circle cx=\"6\" cy=\"18\" r=\"3\" /> <circle cx=\"18\" cy=\"16\" r=\"3\" />", "wheat": "<path d=\"M2 22 16 8\" /> <path d=\"M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z\" /> <path d=\"M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z\" /> <path d=\"M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z\" /> <path d=\"M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z\" /> <path d=\"M11.47 17.47 13 19l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L5 19l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z\" /> <path d=\"M15.47 13.47 17 15l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L9 15l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z\" /> <path d=\"M19.47 9.47 21 11l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L13 11l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z\" />", "beef": "<circle cx=\"12.5\" cy=\"8.5\" r=\"2.5\" /> <path d=\"M12.5 2a6.5 6.5 0 0 0-6.22 4.6c-1.1 3.13-.78 3.9-3.18 6.08A3 3 0 0 0 5 18c4 0 8.4-1.8 11.4-4.3A6.5 6.5 0 0 0 12.5 2Z\" /> <path d=\"m18.5 6 2.19 4.5a6.48 6.48 0 0 1 .31 2 6.49 6.49 0 0 1-2.6 5.2C15.4 20.2 11 22 7 22a3 3 0 0 1-2.68-1.66L2.4 16.5\" />", "utensils": "<path d=\"M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2\" /> <path d=\"M7 2v20\" /> <path d=\"M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7\" />", "plant": "<path d=\"M7 15h10v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2v-4z\" /> <path d=\"M12 9a6 6 0 0 0 -6 -6h-3v2a6 6 0 0 0 6 6h3\" /> <path d=\"M12 11a6 6 0 0 1 6 -6h3v1a6 6 0 0 1 -6 6h-3\" /> <path d=\"M12 15l0 -6\" />", "pepper": "<path d=\"M13 11c0 2.21 -2.239 4 -5 4s-5 -1.79 -5 -4a8 8 0 1 0 16 0a3 3 0 0 0 -6 0\" /> <path d=\"M16 8c0 -2 2 -4 4 -4\" />", "users": "<path d=\"M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0\" /> <path d=\"M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2\" /> <path d=\"M16 3.13a4 4 0 0 1 0 7.75\" /> <path d=\"M21 21v-2a4 4 0 0 0 -3 -3.85\" />", "store": "<path d=\"M3 21l18 0\" /> <path d=\"M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4\" /> <path d=\"M5 21l0 -10.15\" /> <path d=\"M19 21l0 -10.15\" /> <path d=\"M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4\" />", "truck": "<path d=\"M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\" /> <path d=\"M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\" /> <path d=\"M5 17h-2v-11a1 1 0 0 1 1 -1h9v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5\" />", "home": "<path d=\"M5 12l-2 0l9 -9l9 9l-2 0\" /> <path d=\"M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7\" /> <path d=\"M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6\" />", "trumpet": "<path d=\"M2 10h10\"/><path d=\"M2 14h10\"/><path d=\"M2 10v4\"/><path d=\"M12 9.5 21 5v14l-9-4.5z\"/><path d=\"M5 10V7.5\"/><path d=\"M8 10V7.5\"/><path d=\"M5 14c0 2 1.5 3 3.5 3H12\"/>", "world": "<path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0\" /> <path d=\"M3.6 9h16.8\" /> <path d=\"M3.6 15h16.8\" /> <path d=\"M11.5 3a17 17 0 0 0 0 18\" /> <path d=\"M12.5 3a17 17 0 0 1 0 18\" />"};
+// 아이콘: Lucide (ISC License), Tabler Icons (MIT License). 트럼펫은 같은 양식으로 직접 그림.
 
 /* ================= 상태 ================= */
 const KEY = "hybrid2faces:v1";
-const blank = () => ({ step:0, tab:0, seen:[], memos:{}, ans:{}, sort:{}, reasons:{}, b1:"", b2:"", b3:"", full:"", fullEdited:false, ev:[], name:"" });
+const blank = () => ({ step:0, tab:0, seen:[], memos:{}, ans:{}, judge:{}, reflect:"", sort:{}, reasons:{}, b1:"", b2:"", b3:"", full:"", fullEdited:false, ev:[], name:"" });
 let S = blank();
 try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(blank(), JSON.parse(raw)); } catch(e) {}
 if (!S.ans) S.ans = {};
+if (S.sort && Object.keys(S.sort).length){ S.sort = {}; S.reasons = {}; S.ev = []; } // 이전 버전 분류 카드는 새 장면 카드와 맞지 않아 비움
+if (!S.judge) S.judge = {};
 CASES.forEach(c => { if (S.memos[c.id] && !S.ans[c.id+"-3"]) S.ans[c.id+"-3"] = S.memos[c.id]; });
 const LV = { read:"내용 확인", think:"생각하기", deep:"도전 질문" };
 const isCorrect = (q, v) => Array.isArray(v) && v.length === q.ans.length && q.ans.every(x => v.includes(x));
@@ -522,9 +577,27 @@ const doneCount = c => c.qs.filter((_,i) => qDone(c,i)).length;
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} };
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const catOf = id => S.sort[id] || "none";
+const jOf = (id, side) => (S.judge[id] && S.judge[id][side]) || "none";
+const isDone = id => jOf(id,"own") !== "none" && jOf(id,"use") !== "none";
+const anyJudged = id => jOf(id,"own") !== "none" || jOf(id,"use") !== "none";
 function toast(msg){ const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove("show"), 1800); }
 const pill = c => `<span class="pill ${c}"><span class="sym ${c}">${CATS[c].sym}</span>${CATS[c].short}</span>`;
+const sidePills = id => `<span class="pill-pair"><span class="sl">원래 공동체</span>${pill(jOf(id,"own"))}<span class="sl">즐기는 쪽</span>${pill(jOf(id,"use"))}</span>`;
+/* 브라우저 기본 confirm 창은 미리보기·임베드 환경에서 막힐 수 있어 직접 만든 확인 창을 씁니다 */
+function ask(msg, okText = "확인", cancelText = "취소"){
+  return new Promise(res => {
+    const ov = document.createElement("div"); ov.className = "modal";
+    ov.innerHTML = `<div class="mbox" role="alertdialog" aria-modal="true" aria-labelledby="mmsg"><p id="mmsg">${esc(msg)}</p><div class="row"><button class="btn line" data-r="0">${esc(cancelText)}</button><button class="btn" data-r="1">${esc(okText)}</button></div></div>`;
+    document.body.appendChild(ov);
+    const prev = document.activeElement;
+    const done = v => { ov.remove(); document.removeEventListener("keydown", key); if (prev && prev.focus) prev.focus(); res(v); };
+    const key = e => { if (e.key === "Escape") done(false); };
+    document.addEventListener("keydown", key);
+    ov.querySelectorAll("[data-r]").forEach(b => b.onclick = () => done(b.dataset.r === "1"));
+    ov.onclick = e => { if (e.target === ov) done(false); };
+    ov.querySelector('[data-r="1"]').focus();
+  });
+}
 
 /* ================= 내비게이션 ================= */
 function renderStepper(){
@@ -538,7 +611,7 @@ function go(i){
   renderStepper();
   $("#prevBtn").disabled = S.step === 0;
   $("#prevBtn").style.visibility = S.step === 0 ? "hidden" : "visible";
-  $("#nextBtn").style.display = S.step === STEPS.length-1 ? "none" : "";
+  $("#nextBtn").style.display = (S.step === STEPS.length-1 || S.step === 0) ? "none" : "";
   $("#nextBtn").textContent = S.step === 0 ? "탐정 활동 시작" : S.step === 3 ? "탐구 결과 보기" : "다음";
   if (S.step === 1) renderCase();
   if (S.step === 2) renderSort();
@@ -548,10 +621,10 @@ function go(i){
   const h = document.querySelectorAll(".screen")[S.step].querySelector("h1,h2"); if (h){ h.setAttribute("tabindex","-1"); h.focus({ preventScroll:true }); }
 }
 $("#prevBtn").onclick = () => go(S.step-1);
-$("#nextBtn").onclick = () => {
-  if (S.step === 1 && S.seen.length < CASES.length && !confirm(`아직 읽지 않은 사건 파일이 ${CASES.length - S.seen.length}개 있어요. 그래도 다음 단계로 갈까요?`)) return;
-  if (S.step === 2){ const left = CARDS.filter(c => catOf(c.id) === "none").length;
-    if (left && !confirm(`아직 분류하지 않은 카드가 ${left}장 있어요. 그래도 다음 단계로 갈까요?`)) return; }
+$("#nextBtn").onclick = async () => {
+  if (S.step === 1 && S.seen.length < CASES.length && !(await ask(`아직 읽지 않은 사건 파일이 ${CASES.length - S.seen.length}개 있어요. 그래도 다음 단계로 갈까요?`, "다음 단계로", "계속 읽기"))) return;
+  if (S.step === 2){ const left = CARDS.filter(c => !isDone(c.id)).length;
+    if (left && !(await ask(`아직 판단을 마치지 않은 장면이 ${left}개 있어요. 그래도 다음 단계로 갈까요?`, "다음 단계로", "계속 판단하기"))) return; }
   go(S.step+1);
 };
 document.querySelectorAll("[data-next]").forEach(b => b.onclick = () => go(1));
@@ -565,9 +638,10 @@ function renderCase(){
   const li = a => a.map(x => `<li>${x}</li>`).join("");
   $("#casefile").setAttribute("aria-labelledby", "tab"+S.tab);
   $("#casefile").innerHTML = `
-    <div class="casehead">
-      <figure class="illus" style="margin:0">${ART[c.art]}<figcaption>${esc(c.artCap)}</figcaption></figure>
-      <div><div class="kicker">사건 파일 ${c.id}</div><h3>${esc(c.title)}</h3><p class="lead" style="margin:0">${esc(c.sub)}</p></div>
+    <div class="kicker">사건 파일 ${c.id}</div><h3 style="font-size:24px;margin-bottom:2px">${esc(c.title)}</h3><p class="lead" style="margin:0 0 14px">${esc(c.sub)}</p>
+    <div class="flow" role="img" aria-label="${esc(c.flow.filter(x => typeof x === "object" && x.c !== "out").map(x => x.o + ": " + x.it.map(t => t.l).join(", ")).join(" / "))} → ${esc(c.title)}">
+      ${c.flow.map(x => typeof x === "string" ? `<span class="op" aria-hidden="true"><span class="oh">${x}</span><span class="ov">${x === "→" ? "↓" : x}</span></span>` :
+        `<span class="grp ${x.c}"><span class="og">${esc(x.o)}</span><span class="gi">${x.it.map(t => `<span class="fi"><span class="ic"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[t.i]}</svg></span><span class="fl">${esc(t.l)}</span></span>`).join("")}</span></span>`).join("")}
     </div>
     <div class="grid2">
       <div class="sec history"><h4>역사적 배경</h4><ul>${li(c.history)}</ul></div>
@@ -582,7 +656,7 @@ function renderCase(){
     <div class="sources">
       <b>참고 자료</b> <span class="verify">검증 필요</span>
       <ul>${c.src.map(s => `<li>${esc(s.t)}${s.u ? ` · <a href="${s.u}" target="_blank" rel="noopener">${esc(s.u)}</a>` : ""}</li>`).join("")}</ul>
-      <p style="margin:6px 0 0">이 앱을 만들 때 위 링크와 도서를 직접 열어 확인하지는 못했어요. <span class="flag">수업 전 확인</span> 표시가 있는 문장은 특히 출처와 대조해 주세요.</p>
+      <p style="margin:6px 0 0">위 링크와 도서는 직접 열어 확인하지 못했어요. <span class="flag">수업 전 확인</span> 표시가 있는 문장은 출처와 대조해 주세요. 아이콘: Lucide(ISC), Tabler Icons(MIT).</p>
     </div>
     <div class="tools">${S.tab < CASES.length-1 ? `<button class="btn line sm" id="nextCase">다음 사건 파일: ${esc(CASES[S.tab+1].tab)}</button>` : `<span style="font-size:14px;color:var(--muted)">사건 파일을 모두 확인했다면 ‘다음’을 눌러 분류 미션으로 가세요.</span>`}</div>`;
   bindQs(c);
@@ -641,64 +715,71 @@ function answerText(c, i){
 }
 
 /* ================= STEP 3 ================= */
-function cardHTML(c){
-  const cur = catOf(c.id);
-  return `<div class="icard" draggable="true" data-card="${c.id}" id="card${c.id}">
-    <div class="meta"><span class="tag">일반적 상황을 가정한 교육용 사례</span>${c.lens.map(l => `<span class="tag lens">${LENS[l]}</span>`).join("")}<span class="tag">관련 사례 ${c.cases}</span></div>
-    <div class="txt"><span class="num">${c.id}</span>${esc(c.t)}</div>
-    <div class="moves" role="group" aria-label="카드 ${c.id} 분류하기">
-      ${["pos","neg","both"].map(k => `<button class="mv ${k}" data-move="${k}" aria-pressed="${cur===k}"><span class="s">${CATS[k].sym}</span>${CATS[k].short}</button>`).join("")}
-      ${cur !== "none" ? `<button class="mv none" data-move="none"><span class="s">↺</span>미분류로</button>` : ""}
-    </div>
-    ${cur !== "none" ? `<div class="reason"><label class="sr" for="rs${c.id}">분류한 이유</label><input type="text" id="rs${c.id}" data-reason="${c.id}" placeholder="이렇게 분류한 이유 (선택)" value="${esc(S.reasons[c.id] || "")}"></div>
-      <details class="persp"><summary>다른 관점도 살펴보기</summary><ul>
-        <li>${pill("pos")} ${esc(c.p.pos)}</li><li>${pill("neg")} ${esc(c.p.neg)}</li><li>${pill("both")} ${esc(c.p.both)}</li></ul></details>` : ""}
-  </div>`;
+function sceneHTML(c){
+  const seg = side => `<div class="jrow"><span class="jl ${side}">${SIDES[side]}에게</span><div class="seg" role="group" aria-label="장면 ${c.id}, ${SIDES[side]}에게 미치는 영향">
+    ${["pos","neg","both"].map(k => `<button class="sg ${k}" data-j="${c.id}" data-side="${side}" data-v="${k}" aria-pressed="${jOf(c.id,side)===k}"><span class="s">${CATS[k].sym}</span>${CATS[k].short}</button>`).join("")}</div></div>`;
+  return `<article class="scene ${isDone(c.id)?"done":""}" id="scene${c.id}">
+    <div class="sh"><span class="num">${c.id}</span><span class="place">${PIN}${esc(c.place)}</span><span class="ptype ${c.type}">${c.type==="make"?"문화가 만들어진 곳":"문화가 소비되는 곳"} · ${esc(c.scale)}</span></div>
+    <p class="stxt">${esc(c.t)}</p>
+    ${seg("own")}${seg("use")}
+    <div class="reason"><label class="sr" for="rs${c.id}">판단한 이유</label><input type="text" id="rs${c.id}" data-reason="${c.id}" placeholder="이렇게 판단한 이유 (선택)" value="${esc(S.reasons[c.id] || "")}"></div>
+    ${anyJudged(c.id) ? `<details class="persp"><summary>다른 관점도 살펴보기</summary><ul><li><b>원래 공동체</b> ${esc(c.p.own)}</li><li><b>즐기는 쪽</b> ${esc(c.p.use)}</li></ul></details>` : ""}
+  </article>`;
 }
 function renderSort(){
-  $("#zones").innerHTML = ["pos","neg","both"].map(k => `
-    <div class="zone ${k}" data-zone="${k}" id="zone-${k}">
-      <h3><span class="sym ${k}">${CATS[k].sym}</span>${CATS[k].name}<span class="cnt" id="cnt-${k}"></span></h3>
-      <div class="cards" id="cards-${k}"></div>
-    </div>`).join("");
-  ["pos","neg","both","none"].forEach(k => {
-    const list = CARDS.filter(c => catOf(c.id) === k);
-    $("#cards-"+k).innerHTML = list.length ? list.map(cardHTML).join("") : `<div class="empty">${k === "none" ? "모든 카드를 분류했어요. 다시 옮기고 싶다면 카드의 버튼을 누르세요." : "카드를 여기로 끌어오거나, 카드의 버튼을 누르세요."}</div>`;
-    $("#cnt-"+k).textContent = `${list.length}장`;
-  });
-  const done = CARDS.filter(c => catOf(c.id) !== "none").length;
-  $("#sortStatus").textContent = `${CARDS.length}장 중 ${done}장 분류함`;
-  bindSort();
-  if (!$("#summaryBox").hidden) renderSummary();
+  $("#scenes").innerHTML = CARDS.map(sceneHTML).join("");
+  bindSort(); renderStatus();
 }
-function moveCard(id, k, focus){
-  if (k === "none") delete S.sort[id]; else S.sort[id] = k;
-  save(); renderSort();
-  if (focus){ const el = document.querySelector(`#card${id} .mv[data-move="${k}"]`) || document.querySelector(`#card${id} .mv`); if (el) el.focus({ preventScroll:false }); }
-  toast(k === "none" ? `카드 ${id}을(를) 미분류로 옮겼어요` : `카드 ${id} → ${CATS[k].name}`);
+function renderStatus(){
+  const done = CARDS.filter(c => isDone(c.id)).length;
+  $("#sortStatus").textContent = `장면 ${CARDS.length}개 중 ${done}개 판단 완료`;
+  if (!$("#summaryBox").hidden) renderSummary();
+  renderBalance();
+}
+function setJudge(id, side, v){
+  S.judge[id] = Object.assign({}, S.judge[id]);
+  if (S.judge[id][side] === v) delete S.judge[id][side]; else S.judge[id][side] = v;
+  save();
+  const old = $("#scene"+id), open = old.querySelector("details[open]");
+  old.outerHTML = sceneHTML(CARDS.find(c => c.id === id));
+  if (open){ const d = $("#scene"+id+" details"); if (d) d.open = true; }
+  bindSort(); renderStatus();
+  const b = document.querySelector(`.sg[data-j="${id}"][data-side="${side}"][data-v="${v}"]`); if (b) b.focus();
 }
 function bindSort(){
-  document.querySelectorAll(".icard").forEach(card => {
-    const id = +card.dataset.card;
-    card.querySelectorAll("[data-move]").forEach(b => b.onclick = () => moveCard(id, b.dataset.move, true));
-    card.addEventListener("dragstart", e => { e.dataTransfer.setData("text/plain", String(id)); e.dataTransfer.effectAllowed = "move"; card.classList.add("dragging"); });
-    card.addEventListener("dragend", () => card.classList.remove("dragging"));
-    const r = card.querySelector("[data-reason]");
-    if (r){ r.oninput = () => { S.reasons[id] = r.value; save(); };
-      r.addEventListener("mousedown", () => card.setAttribute("draggable","false"));
-      r.addEventListener("blur", () => card.setAttribute("draggable","true")); }
-  });
-  document.querySelectorAll("[data-zone]").forEach(z => {
-    z.ondragover = e => { e.preventDefault(); z.classList.add("over"); };
-    z.ondragleave = e => { if (!z.contains(e.relatedTarget)) z.classList.remove("over"); };
-    z.ondrop = e => { e.preventDefault(); z.classList.remove("over"); const id = +e.dataTransfer.getData("text/plain"); if (id) moveCard(id, z.dataset.zone, false); };
-  });
+  document.querySelectorAll(".sg").forEach(b => b.onclick = () => setJudge(+b.dataset.j, b.dataset.side, b.dataset.v));
+  document.querySelectorAll("[data-reason]").forEach(r => r.oninput = () => { S.reasons[r.dataset.reason] = r.value; save(); if (!$("#summaryBox").hidden) renderSummary(); });
 }
-$("#resetSort").onclick = () => { if (!confirm("카드 분류와 분류 이유를 모두 지울까요?")) return; S.sort = {}; S.reasons = {}; S.ev = []; save(); renderSort(); toast("분류를 초기화했어요"); };
-$("#toggleSummary").onclick = () => { const b = $("#summaryBox"); b.hidden = !b.hidden; $("#toggleSummary").setAttribute("aria-expanded", !b.hidden); $("#toggleSummary").textContent = b.hidden ? "내 분류 한눈에 보기" : "한눈에 보기 닫기"; if (!b.hidden) renderSummary(); };
+function counts(side){ const o = { pos:0, neg:0, both:0 }; CARDS.forEach(c => { const v = jOf(c.id, side); if (v !== "none") o[v]++; }); return o; }
+function barHTML(side){
+  const o = counts(side), n = o.pos + o.neg + o.both;
+  if (!n) return `<div class="bbar"><span style="color:var(--muted);width:100%;font-weight:400">아직 판단 없음</span></div>`;
+  return `<div class="bbar" aria-label="${SIDES[side]}: 좋은 영향 ${o.pos}, 문제 ${o.neg}, 양면 ${o.both}">${["pos","neg","both"].filter(k => o[k]).map(k => `<span class="${k}" style="width:${o[k]/n*100}%">${CATS[k].sym} ${o[k]}</span>`).join("")}</div>`;
+}
+function renderBalance(){
+  const any = CARDS.some(c => anyJudged(c.id));
+  const box = $("#balance");
+  if (!any){ box.innerHTML = ""; return; }
+  const ta = box.querySelector("#reflect");
+  const keep = ta && document.activeElement === ta;
+  if (keep){ box.querySelector("#bars").innerHTML = bars(); return; }
+  box.innerHTML = `<div class="bal"><h3>영향의 저울: 영향은 고르게 나뉘었나요?</h3>
+    <p style="font-size:13.5px;color:var(--muted);margin:0">내가 판단한 결과를 두 쪽으로 모아 본 그래프예요.</p>
+    <div id="bars">${bars()}</div>
+    <label for="reflect" style="display:block;font-weight:700;font-size:14.5px;margin:14px 0 6px">두 쪽의 결과는 비슷한가요, 다른가요? 차이가 있다면 <b>문화가 만들어진 곳</b>과 <b>소비되는 곳</b>의 장면을 비교해 이유를 써 보세요.</label>
+    <textarea id="reflect" rows="3" placeholder="예: 소비되는 곳에서는 즐기는 쪽에게 좋은 영향이 많았지만, 원래 공동체에게는 ___">${esc(S.reflect || "")}</textarea></div>`;
+  $("#reflect").oninput = e => { S.reflect = e.target.value; save(); };
+}
+const bars = () => `<div class="brow"><b style="font-size:14px">원래 공동체</b>${barHTML("own")}</div><div class="brow"><b style="font-size:14px">즐기는 쪽</b>${barHTML("use")}</div>`;
+$("#resetSort").onclick = async () => {
+  if (!(await ask("모든 장면의 판단과 이유, 영향의 저울 메모를 지울까요?", "지우기"))) return;
+  S.judge = {}; S.reasons = {}; S.ev = []; S.reflect = ""; save();
+  $("#balance").innerHTML = ""; renderSort(); toast("판단을 초기화했어요");
+};
+$("#toggleSummary").onclick = () => { const b = $("#summaryBox"); b.hidden = !b.hidden; $("#toggleSummary").setAttribute("aria-expanded", !b.hidden); $("#toggleSummary").textContent = b.hidden ? "내 판단 한눈에 보기" : "한눈에 보기 닫기"; if (!b.hidden) renderSummary(); };
 function summaryTable(){
-  return `<div class="tablewrap"><table class="summary"><thead><tr><th>카드</th><th>나의 분류</th><th>나의 이유</th></tr></thead><tbody>
-    ${CARDS.map(c => `<tr><td><b>${c.id}.</b> ${esc(c.t)}</td><td>${pill(catOf(c.id))}</td><td>${esc(S.reasons[c.id] || "—")}</td></tr>`).join("")}</tbody></table></div>`;
+  return `<div class="tablewrap"><table class="summary"><thead><tr><th>장면</th><th>장소</th><th>원래 공동체</th><th>즐기는 쪽</th><th>나의 이유</th></tr></thead><tbody>
+    ${CARDS.map(c => `<tr><td><b>${c.id}.</b> ${esc(c.t)}</td><td style="white-space:nowrap">${esc(c.place)}<br><span style="font-size:12px;color:var(--muted)">${c.type==="make"?"만들어진 곳":"소비되는 곳"}</span></td><td>${pill(jOf(c.id,"own"))}</td><td>${pill(jOf(c.id,"use"))}</td><td>${esc(S.reasons[c.id] || "—")}</td></tr>`).join("")}</tbody></table></div>`;
 }
 function renderSummary(){ $("#summaryBox").innerHTML = summaryTable(); }
 
@@ -711,25 +792,27 @@ function renderJudge(){
   $("#full").oninput = () => { S.full = $("#full").value; S.fullEdited = true; save(); editNote(); renderChecks(); };
   $("#rebuild").onclick = () => { S.fullEdited = false; S.full = compose(); $("#full").value = S.full; save(); editNote(); renderChecks(); toast("빈칸 내용으로 문장을 다시 만들었어요"); };
   editNote();
-  const ordered = [...CARDS].sort((a,b) => ["pos","both","neg","none"].indexOf(catOf(a.id)) - ["pos","both","neg","none"].indexOf(catOf(b.id)));
+  const ordered = CARDS;
   $("#evlist").innerHTML = ordered.map(c => `<label class="ev"><input type="checkbox" data-ev="${c.id}" ${S.ev.includes(c.id)?"checked":""}>
-    <span><span class="t"><b>${c.id}.</b> ${esc(c.t)}</span><span class="r" style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">${pill(catOf(c.id))}${S.reasons[c.id] ? `이유: ${esc(S.reasons[c.id])}` : ""}</span></span></label>`).join("");
+    <span><span class="t"><b>${c.id}. ${esc(c.place)}</b> ${esc(c.t)}</span><span class="r" style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:4px">${sidePills(c.id)}</span>${S.reasons[c.id] ? `<span class="r">이유: ${esc(S.reasons[c.id])}</span>` : ""}</span></label>`).join("");
   $("#evlist").querySelectorAll("[data-ev]").forEach(cb => cb.onchange = () => { const id = +cb.dataset.ev; S.ev = cb.checked ? [...S.ev, id] : S.ev.filter(x => x !== id); save(); renderChecks(); });
   renderChecks();
 }
 function editNote(){ $("#editNote").textContent = S.fullEdited ? "직접 고친 문장이에요. 빈칸을 바꿔도 이 문장은 그대로 유지돼요." : "빈칸을 채우면 자동으로 완성돼요."; }
 function renderChecks(){
-  const evCats = S.ev.map(catOf);
+  const evCats = S.ev.flatMap(id => [jOf(id,"own"), jOf(id,"use")]);
   const txt = S.full + " " + S.b1 + S.b2 + S.b3;
-  const caseWords = ["재즈","뉴올리언스","멕시코","타코","텍스멕스","토르티야","몰레","칠리","블루스","옥수수"];
+  const caseWords = ["재즈","뉴올리언스","트레메","멕시코","오악사카","샌안토니오","텍사스","서울","타코","텍스멕스","몰레","관광지","동네","도시"];
+  const whoWords = ["주민","공동체","음악가","요리사","상인","관광객","소비자","기업","손님","만든 사람"];
   const items = [
     [S.b1.trim() && S.b2.trim() && S.b3.trim(), "세 빈칸을 모두 채웠어요.", "가치·문제·실천 세 빈칸을 모두 채워 보세요."],
-    [caseWords.some(w => txt.includes(w)), "구체적인 사례(재즈, 멕시코 음식 등)를 언급했어요.", "사건 파일 A·B·C 중 하나의 사례 이름을 넣으면 설득력이 커져요."],
-    [S.ev.length >= 1, `근거 카드 ${S.ev.length}장을 골랐어요.`, "판단을 뒷받침할 근거 카드를 1장 이상 골라 보세요."],
-    [evCats.some(c => c === "pos" || c === "both"), "‘가치’를 뒷받침하는 긍정·양면 카드가 있어요.", "‘가치’ 빈칸과 연결되는 긍정 또는 양면 카드가 있는지 살펴보세요."],
-    [evCats.some(c => c === "neg" || c === "both"), "‘문제’를 뒷받침하는 문제점·양면 카드가 있어요.", "‘문제’ 빈칸과 연결되는 문제점 또는 양면 카드가 있는지 살펴보세요."],
+    [caseWords.some(w => txt.includes(w)), "구체적인 사례나 장소를 언급했어요.", "뉴올리언스, 오악사카, 샌안토니오처럼 구체적인 장소나 사례를 넣으면 설득력이 커져요."],
+    [whoWords.some(w => txt.includes(w)), "누구에게 영향이 가는지 밝혔어요.", "그 영향이 ‘누구에게’ 가는지(주민, 관광객, 기업 등) 밝혀 보세요."],
+    [S.ev.length >= 1, `근거 장면 ${S.ev.length}개를 골랐어요.`, "판단을 뒷받침할 근거 장면을 1개 이상 골라 보세요."],
+    [evCats.some(c => c === "pos" || c === "both"), "‘가치’를 뒷받침하는 좋은 영향·양면 판단이 근거에 있어요.", "‘가치’ 빈칸과 연결되는, 좋은 영향(+)이나 양면(±)으로 판단한 장면을 골라 보세요."],
+    [evCats.some(c => c === "neg" || c === "both"), "‘문제’를 뒷받침하는 문제·양면 판단이 근거에 있어요.", "‘문제’ 빈칸과 연결되는, 문제(−)나 양면(±)으로 판단한 장면을 골라 보세요."],
     [S.b3.trim().length >= 12, "실천 방안을 구체적으로 썼어요.", "실천 빈칸에 ‘누가, 무엇을’ 할지 조금 더 구체적으로 써 보세요."],
-    [/(차이|태도|상업|상품|기여|인정|기원|역사)/.test(S.b2), "문제를 ‘문화의 차이’가 아닌 태도·상업화·기여 인정 등으로 구체화했어요.", "문제가 ‘문화가 섞인 것 자체’인지, ‘차이를 대하는 태도·상업화·기여 인정’인지 구분해 보세요."]
+    [/(차이|태도|상업|상품|기여|인정|기원|역사|이익|집값|고정관념|관광)/.test(S.b2), "문제를 ‘문화가 섞인 것 자체’가 아닌 구체적인 원인으로 썼어요.", "문제가 ‘문화가 섞인 것 자체’인지, 이익이 한쪽에 쏠리거나 기여가 잊히는 등 구체적인 원인인지 구분해 보세요."]
   ];
   $("#checklist").innerHTML = items.map(([ok, a, b]) => `<li><span class="ic ${ok?"ok":"todo"}" aria-hidden="true">${ok?"✓":"·"}</span><span><span class="st">${ok?"확인":"다듬기"}</span>${ok ? a : b}</span></li>`).join("");
 }
@@ -746,27 +829,33 @@ function renderReport(){
     <p class="question" style="margin-top:14px">핵심 질문: 서로 다른 문화의 만남은 새로운 문화를 만들어 내지만, 그 과정과 결과가 모두에게 긍정적이기만 할까?</p>
     <h3>1. 나의 최종 판단</h3>
     <div class="verdict">${esc(S.full.trim() || compose())}</div>
-    <h3>2. 판단의 근거 카드</h3>
-    ${evCards.length ? `<ul style="padding-left:20px;margin:0">${evCards.map(c => `<li style="margin-bottom:6px">${pill(catOf(c.id))} <b>${c.id}.</b> ${esc(c.t)}${S.reasons[c.id] ? `<br><span style="color:var(--muted);font-size:14px">나의 이유: ${esc(S.reasons[c.id])}</span>` : ""}</li>`).join("")}</ul>` : `<p style="color:var(--muted)">선택한 근거 카드가 없어요. STEP 4에서 골라 보세요.</p>`}
+    <h3>2. 판단의 근거 장면</h3>
+    ${evCards.length ? `<ul style="padding-left:20px;margin:0">${evCards.map(c => `<li style="margin-bottom:8px"><b>${c.id}. ${esc(c.place)}</b> ${esc(c.t)}<br>${sidePills(c.id)}${S.reasons[c.id] ? `<br><span style="color:var(--muted);font-size:14px">나의 이유: ${esc(S.reasons[c.id])}</span>` : ""}</li>`).join("")}</ul>` : `<p style="color:var(--muted)">선택한 근거 장면이 없어요. STEP 4에서 골라 보세요.</p>`}
     <h3>3. 사건 파일 탐정 질문</h3>
     ${CASES.map(c => `<p class="memo" style="margin:10px 0 2px"><b>${esc(c.tab)}</b></p><ol style="margin:0 0 6px;padding-left:22px;font-size:14.5px">${c.qs.map((q,i) => `<li style="margin-bottom:4px">${esc(q.q)}<br><span style="color:var(--muted)">→ ${esc(answerText(c,i))}</span></li>`).join("")}</ol>`).join("")}
-    <h3>4. 영향 카드 분류 결과</h3>
-    <p style="font-size:13.5px;color:var(--muted)">모든 카드는 일반적 상황을 가정한 교육용 판단 카드예요.</p>
+    <h3>4. 장소별 장면 판단 결과</h3>
+    <p style="font-size:13.5px;color:var(--muted)">모든 장면은 실제 경향을 바탕으로 만든 교육용 장면이에요.</p>
     ${summaryTable()}
-    <p style="font-size:12.5px;color:var(--muted);margin-top:16px">사례 내용의 일부 사실(연도, 음반, 상인 등)은 수업 전 출처 확인이 필요한 항목으로 표시되어 있어요.</p>`;
+    <div style="margin-top:12px">${bars()}</div>
+    <p class="memo" style="margin-top:12px"><b>영향의 저울 메모</b> ${esc(S.reflect || "—")}</p>
+    <p style="font-size:12.5px;color:var(--muted);margin-top:16px">사례 내용의 일부 사실(첫 재즈 음반 등)은 수업 전 출처 확인이 필요한 항목으로 표시되어 있어요.</p>`;
 }
 function plainReport(){
   const L = [];
   L.push("[나의 탐구 결과] 문화 혼종성의 두 얼굴");
   L.push(`탐정: ${S.name || "(이름 미입력)"} / ${new Date().toLocaleDateString("ko-KR")}`, "");
   L.push("1. 나의 최종 판단", S.full.trim() || compose(), "");
-  L.push("2. 판단의 근거 카드");
+  const jt = id => `원래 공동체: ${CATS[jOf(id,"own")].short}, 즐기는 쪽: ${CATS[jOf(id,"use")].short}`;
+  L.push("2. 판단의 근거 장면");
   if (!S.ev.length) L.push("- (선택 없음)");
-  S.ev.forEach(id => { const c = CARDS.find(x => x.id === id); L.push(`- [${CATS[catOf(id)].short}] ${id}. ${c.t}${S.reasons[id] ? ` / 이유: ${S.reasons[id]}` : ""}`); });
+  S.ev.forEach(id => { const c = CARDS.find(x => x.id === id); L.push(`- ${id}. [${c.place}] ${c.t}\n  (${jt(id)})${S.reasons[id] ? ` / 이유: ${S.reasons[id]}` : ""}`); });
   L.push("", "3. 사건 파일 탐정 질문");
   CASES.forEach(c => { L.push(`[${c.tab}]`); c.qs.forEach((q,i) => L.push(`  ${i+1}. ${q.q}\n     → ${answerText(c,i)}`)); });
-  L.push("", "4. 영향 카드 분류 결과 (교육용 가정 사례)");
-  CARDS.forEach(c => L.push(`- ${c.id}. [${CATS[catOf(c.id)].short}] ${c.t}${S.reasons[c.id] ? ` / 이유: ${S.reasons[c.id]}` : ""}`));
+  L.push("", "4. 장소별 장면 판단 결과 (교육용 장면)");
+  CARDS.forEach(c => L.push(`- ${c.id}. [${c.place} · ${c.type==="make"?"만들어진 곳":"소비되는 곳"}] ${c.t}\n  (${jt(c.id)})${S.reasons[c.id] ? ` / 이유: ${S.reasons[c.id]}` : ""}`));
+  const co = counts("own"), cu = counts("use");
+  L.push(`- 영향의 저울: 원래 공동체(+${co.pos} −${co.neg} ±${co.both}) / 즐기는 쪽(+${cu.pos} −${cu.neg} ±${cu.both})`);
+  L.push(`- 영향의 저울 메모: ${S.reflect || "-"}`);
   return L.join("\n");
 }
 $("#copyBtn").onclick = () => {
@@ -776,7 +865,7 @@ $("#copyBtn").onclick = () => {
   if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(txt).then(() => toast("결과를 복사했어요"), fallback); else fallback();
 };
 $("#printBtn").onclick = () => window.print();
-$("#resetAll").onclick = () => { if (!confirm("모든 메모, 분류, 판단을 지우고 처음부터 시작할까요?")) return; S = blank(); save(); go(0); toast("모든 기록을 지웠어요"); };
+$("#resetAll").onclick = async () => { if (!(await ask("모든 질문 답, 장면 판단, 최종 판단을 지우고 처음부터 시작할까요?", "모두 지우기"))) return; S = blank(); save(); go(0); toast("모든 기록을 지웠어요"); };
 
 go(S.step);
 </script>
